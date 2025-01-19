@@ -41,33 +41,10 @@ __decorate([
 ], Games.prototype, "desc", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
-        type: sequelize_1.DataTypes.ENUM({
-            values: [
-                'PlayStation',
-                'Xbox',
-                'Windows',
-                'Nintendo Switch',
-                'Nintendo 3DS',
-                'Nintendo Wii',
-                'Nintendo Wii U',
-                'Steam Deck',
-                'Android',
-                'iOS',
-                'VR',
-                'Stadia',
-                'Amazon Luna',
-                'Mac',
-                'Linux',
-                'Atari',
-                'Sega',
-                'Game Boy',
-                'PSP',
-                'PS Vita'
-            ]
-        }),
+        type: sequelize_1.DataTypes.JSON,
         allowNull: true
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Array)
 ], Games.prototype, "platforms", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
@@ -85,60 +62,17 @@ __decorate([
 ], Games.prototype, "publisher", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
-        type: sequelize_1.DataTypes.ENUM({
-            values: [
-                'Action',
-                'Adventure',
-                'RPG',
-                'Shooter',
-                'Platformer',
-                'Simulation',
-                'Strategy',
-                'Puzzle',
-                'Racing',
-                'Sports',
-                'Fighting',
-                'Horror',
-                'Survival',
-                'MMO',
-                'MOBA',
-                'Idle',
-                'Card',
-                'Party',
-                'Music',
-                'Stealth',
-                'Visual Novel',
-                'Sandbox',
-                'Open World',
-                'Bullet Hell',
-                'Rogue-like',
-                'Tower Defense',
-                'Educational',
-                'Trivia',
-            ]
-        }),
+        type: sequelize_1.DataTypes.JSON,
         allowNull: true
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Array)
 ], Games.prototype, "genres", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
-        type: sequelize_1.DataTypes.ENUM({
-            values: [
-                'Singleplayer',
-                'Multiplayer',
-                'Co-op',
-                'PvP',
-                'PvE',
-                'Battle Royale',
-                'MMORPG',
-                'Split-Screen',
-                'LAN',
-            ]
-        }),
+        type: sequelize_1.DataTypes.JSON,
         allowNull: true
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Array)
 ], Games.prototype, "gameModes", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({

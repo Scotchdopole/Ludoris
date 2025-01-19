@@ -1,5 +1,5 @@
-export const getAllgames = async () => {
-    const req = await fetch("http://localhost:3000/game", {
+export const getAllGames = async () => {
+    const req = await fetch("http://localhost:3000/api/v1/games/", {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json"
@@ -14,8 +14,8 @@ export const getAllgames = async () => {
     }
 }
 
-export const getgameById = async (id) => {
-    const req = await fetch(`http://localhost:3000/game/${id}`, {
+export const getGameById = async (id: any) => {
+    const req = await fetch(`http://localhost:3000/api/v1/games/${id}`, {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json"
@@ -30,8 +30,8 @@ export const getgameById = async (id) => {
     }
 }
 
-export const creategame = async (formData) => {
-    const req = await fetch(`http://localhost:3000/game/`, {
+export const createGame = async (formData: object) => {
+    const req = await fetch(`http://localhost:3000/api/v1/games`, {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json"
@@ -47,8 +47,8 @@ export const creategame = async (formData) => {
     }
 }
 
-export const updategame = async (id, formData) => {
-    const req = await fetch(`http://localhost:3000/game/${id}`, {
+export const updateGame = async (id: any, formData: object) => {
+    const req = await fetch(`http://localhost:3000/api/v1/games/${id}`, {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json"
@@ -64,8 +64,8 @@ export const updategame = async (id, formData) => {
     }
 }
 
-export const deletegame = async (id) => {
-    const req = await fetch(`http://localhost:3000/game/${id}`, {
+export const deleteGame = async (id: any) => {
+    const req = await fetch(`http://localhost:3000/api/v1/games/${id}`, {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json"

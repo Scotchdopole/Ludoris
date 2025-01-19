@@ -15,50 +15,24 @@ export class Games extends Model {
     })
     id!: string;
 
-
     @Column({
         type: DataType.STRING(255),
         allowNull: true,
         unique: true
-
     })
     name!: string;
 
     @Column({
         type: DataType.TEXT,
         allowNull: true,
-
     })
     desc!: string;
 
     @Column({
-        type: DataTypes.ENUM({
-            values: [
-                'PlayStation',
-                'Xbox',
-                'Windows',
-                'Nintendo Switch',
-                'Nintendo 3DS',
-                'Nintendo Wii',
-                'Nintendo Wii U',
-                'Steam Deck',
-                'Android',
-                'iOS',
-                'VR',
-                'Stadia',
-                'Amazon Luna',
-                'Mac',
-                'Linux',
-                'Atari',
-                'Sega',
-                'Game Boy',
-                'PSP',
-                'PS Vita'
-            ]
-        }),
+        type: DataTypes.JSON,
         allowNull: true
     })
-    platforms!: string;
+    platforms!: string[];
 
     @Column({
         type: DataType.STRING(64),
@@ -73,59 +47,16 @@ export class Games extends Model {
     publisher!: string;
 
     @Column({
-        type: DataTypes.ENUM({
-            values: [
-                'Action',
-                'Adventure',
-                'RPG',
-                'Shooter',
-                'Platformer',
-                'Simulation',
-                'Strategy',
-                'Puzzle',
-                'Racing',
-                'Sports',
-                'Fighting',
-                'Horror',
-                'Survival',
-                'MMO',
-                'MOBA',
-                'Idle',
-                'Card',
-                'Party',
-                'Music',
-                'Stealth',
-                'Visual Novel',
-                'Sandbox',
-                'Open World',
-                'Bullet Hell',
-                'Rogue-like',
-                'Tower Defense',
-                'Educational',
-                'Trivia',
-            ]
-        }),
+        type: DataTypes.JSON,
         allowNull: true
     })
-    genres!: string;
+    genres!: string[];
 
     @Column({
-        type: DataTypes.ENUM({
-            values: [
-                'Singleplayer',
-                'Multiplayer',
-                'Co-op',
-                'PvP',
-                'PvE',
-                'Battle Royale',
-                'MMORPG',
-                'Split-Screen',
-                'LAN',
-            ]
-        }),
+        type: DataTypes.JSON,
         allowNull: true
     })
-    gameModes!: string;
+    gameModes!: string[];
 
     @Column({
         type: DataType.STRING(64),
@@ -144,6 +75,4 @@ export class Games extends Model {
         allowNull: true
     })
     ytbTrailerLink!: string;
-
-
 }
