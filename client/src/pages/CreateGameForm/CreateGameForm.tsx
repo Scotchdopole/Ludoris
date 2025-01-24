@@ -93,7 +93,7 @@ export default function CreateGameForm() {
                                 onChange={handleInput}
                             />
                             <label htmlFor="Playstation">Playstation</label>
-
+            
                             <input
                                 type="checkbox"
                                 id="Xbox"
@@ -102,7 +102,7 @@ export default function CreateGameForm() {
                                 onChange={handleInput}
                             />
                             <label htmlFor="Xbox">Xbox</label>
-
+            
                             <input
                                 type="checkbox"
                                 id="Windows"
@@ -111,16 +111,16 @@ export default function CreateGameForm() {
                                 onChange={handleInput}
                             />
                             <label htmlFor="Windows">Windows</label>
-
+            
                             <input
                                 type="checkbox"
-                                id="Windows"
+                                id="android"
                                 name="platforms"
-                                value="Windows"
+                                value="android"
                                 onChange={handleInput}
                             />
-                            <label htmlFor="Windows">Windows</label>
-
+                            <label htmlFor="Android">Android</label>
+            
                             <input
                                 type="checkbox"
                                 id="Linux"
@@ -129,7 +129,7 @@ export default function CreateGameForm() {
                                 onChange={handleInput}
                             />
                             <label htmlFor="Linux">Linux</label>
-
+            
                             <input
                                 type="checkbox"
                                 id="MacOS"
@@ -138,7 +138,7 @@ export default function CreateGameForm() {
                                 onChange={handleInput}
                             />
                             <label htmlFor="MacOS">MacOS</label>
-                            
+            
                             <input
                                 type="checkbox"
                                 id="Nintendo_Switch"
@@ -147,7 +147,7 @@ export default function CreateGameForm() {
                                 onChange={handleInput}
                             />
                             <label htmlFor="Nintendo_Switch">Nintendo Switch</label>
-
+            
                             <input
                                 type="checkbox"
                                 id="Nintendo_DS"
@@ -156,7 +156,35 @@ export default function CreateGameForm() {
                                 onChange={handleInput}
                             />
                             <label htmlFor="Nintendo_DS">Nintendo DS</label>
-
+            
+                            <input
+                                type="checkbox"
+                                id="Nintendo_Wii"
+                                name="platforms"
+                                value="Nintendo Wii"
+                                onChange={handleInput}
+                            />
+                            <label htmlFor="Nintendo_Wii">Nintendo Wii</label>
+            
+            
+                            <input
+                                type="checkbox"
+                                id="iOS"
+                                name="platforms"
+                                value="iOS"
+                                onChange={handleInput}
+                            />
+                            <label htmlFor="iOS">iOS</label>
+            
+                            <input
+                                type="checkbox"
+                                id="other"
+                                name="platforms"
+                                value="other"
+                                onChange={handleInput}
+                            />
+                            <label htmlFor="Other">Other</label>
+            
                     <input
                         type="text"
                         name="developer"
