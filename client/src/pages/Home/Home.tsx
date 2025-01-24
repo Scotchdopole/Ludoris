@@ -7,6 +7,7 @@ export default function Home() {
 
       <Link to="/create-game">create game</Link>
 
+
     </>
   )
 }
