@@ -1,6 +1,6 @@
-const dbConfig = require("../config/db");
+const dbConfig = require("../config/db.js");
 
-const [Sequelize, DataTypes] = require("sequelize");
+const {Sequelize, DataTypes} = require("sequelize");
 
 const sequelize = new Sequelize(
     dbConfig.DB,
@@ -25,9 +25,12 @@ const db = {}
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.games = require("./games.js")(sequelize, DataTypes)
+db.game = require("./games.js")(sequelize, DataTypes)
 
 db.sequelize.sync({ force: false })
+.then(() => {
+    console.log("sync done")
+})
 
 
 module.exports = db

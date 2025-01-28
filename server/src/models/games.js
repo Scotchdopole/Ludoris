@@ -1,13 +1,25 @@
-const { sequelize } = require(".");
+
 
 module.exports = (sequelize, DataTypes) => {
 
-    const games = sequelize.define("product",{
+    const Game = sequelize.define("game", {
 
         id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+
+        name: {
             type: DataTypes.STRING,
             allowNull: false
-        }
+        },
+
+
+        
+
 
     })
+
+    return Game
 }
