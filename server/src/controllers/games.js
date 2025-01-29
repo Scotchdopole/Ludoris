@@ -1,4 +1,4 @@
-const gameDb = require("../models")
+const gameDb = require("../models/")
 
 const Game = gameDb.game
 
@@ -9,7 +9,11 @@ const createGame = async (req, res) => {
 
     let info = {
         id: req.body.id,
-        name: req.body.name
+        name: req.body.name,
+        engine: req.body.engine,
+        developer: req.body.developer,
+        publisher: req.body.publisher,
+        gameModes: req.body.gameModes
     }
 
     const game = await Game.create(info);

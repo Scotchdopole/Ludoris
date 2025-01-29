@@ -15,18 +15,6 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
 
-        //association
-        genres: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-
-        //association
-        platforms: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-
         engine: {
             type: DataTypes.STRING,
             allowNull: true
@@ -56,14 +44,14 @@ module.exports = (sequelize, DataTypes) => {
         },
 
         price: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: true
         },
 
         ytbTrailerLink: {
             type: DataTypes.STRING,
             allowNull: true
-        },
+        }
 
          
 
