@@ -15,31 +15,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
 
-        engine: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        
-        //association
-        developer: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-
-         //association
-        publisher: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-
-         //association
-        gameModes: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-
         releaseDate: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: true
         },
 

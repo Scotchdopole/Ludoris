@@ -28,6 +28,11 @@ db.sequelize = sequelize;
 db.game = require("./games.js")(sequelize, DataTypes)
 db.genre = require("./genres.js")(sequelize, DataTypes)
 db.platform = require("./platforms.js")(sequelize, DataTypes)
+db.developer = require("./developer.js")(sequelize, DataTypes)
+db.publisher = require("./publisher.js")(sequelize, DataTypes)
+db.engine = require("./engine.js")(sequelize, DataTypes)
+db.perspective = require("./perspective.js")(sequelize, DataTypes)
+db.gameModes = require("./gameModes.js")(sequelize, DataTypes)
 
 
 //associace
@@ -37,6 +42,20 @@ db.genre.belongsToMany(db.game, { through: "gameGenres" })
 db.game.belongsToMany(db.platform, { through: "gamePlatforms" })
 db.platform.belongsToMany(db.game, { through: "gamePlatforms" })
 
+db.game.belongsToMany(db.developer, { through: "gameDeveloper" })
+db.developer.belongsToMany(db.game, { through: "gameDeveloper" })
+
+db.game.belongsToMany(db.publisher, { through: "gamePublisher" })
+db.publisher.belongsToMany(db.game, { through: "gamePublisher" })
+
+db.game.belongsToMany(db.engine, { through: "gameEngine" })
+db.engine.belongsToMany(db.game, { through: "gameEngine" })
+
+db.game.belongsToMany(db.perspective, { through: "gamePerspective" })
+db.perspective.belongsToMany(db.game, { through: "gamePerspective" })
+
+db.game.belongsToMany(db.gameModes, { through: "gameGameModes" })
+db.gameModes.belongsToMany(db.game, { through: "gameGameModes" })
 
 
 
@@ -45,7 +64,7 @@ db.platform.belongsToMany(db.game, { through: "gamePlatforms" })
 
 
 
-db.sequelize.sync({ force: true })
+db.sequelize.sync({ force: false })
     .then(() => {
         console.log("sync done")
 
