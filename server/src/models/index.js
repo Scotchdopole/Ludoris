@@ -43,6 +43,8 @@ db.platform.belongsToMany(db.game, { through: "gamePlatforms" })
 
 
 
+
+
 db.sequelize.sync({ force: true })
     .then(() => {
         console.log("sync done")

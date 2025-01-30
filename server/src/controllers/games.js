@@ -1,6 +1,7 @@
 const gameDb = require("../models/")
 
 const Game = gameDb.game
+const Genre = gameDb.genre
 
 
 
@@ -24,7 +25,12 @@ const createGame = async (req, res) => {
 
 const getAllGames = async (req, res) => {
 
-    let games = await Game.findAll({})
+    let games = await Game.findAll({
+        include: [{
+            model: { Genre, Platform },
+            through: { attributes: [] }
+        }],
+    })
     res.status(200).send(games)
 
 }
