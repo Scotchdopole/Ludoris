@@ -7,7 +7,7 @@ const Developer = gameDb.developer
 const Publisher = gameDb.publisher
 const Engine = gameDb.engine
 const Perspective = gameDb.perspective
-const GameModes = gameDb.gameModes
+
 
 
 
@@ -17,8 +17,8 @@ const createGame = async (req, res) => {
         const {
             name,
             engines,
-            developers,  
-            publishers,  
+            developers,
+            publishers,
             genreIds,
             platformIds,
             releaseDate,
@@ -28,22 +28,23 @@ const createGame = async (req, res) => {
             perspectiveIds
         } = req.body;
 
-       
+
         const newGame = await Game.create({
-            name,  
+            name,
             releaseDate,
             price,
             ytbTrailerLink
         });
 
-        
+
+
         let developerIds = [];
         if (developers && developers.length > 0) {
             for (const dev of developers) {
                 let [developer] = await Developer.findOrCreate({
                     where: { name: dev.name },
                     defaults: { name: dev.name }
-                });
+                });   
                 developerIds.push(developer.id);
             }
             await newGame.setDevelopers(developerIds);
@@ -61,7 +62,7 @@ const createGame = async (req, res) => {
             await newGame.setEngines(engineIds);
         }
 
-       
+
         let publisherIds = [];
         if (publishers && publishers.length > 0) {
             for (const pub of publishers) {
@@ -83,7 +84,7 @@ const createGame = async (req, res) => {
         }
         if (gameModesIds && gameModesIds.length > 0) {
             await newGame.setGameModes(gameModesIds);
-        } 
+        }
         if (perspectiveIds && perspectiveIds.length > 0) {
             await newGame.setPerspective(perspectiveIds);
         }
@@ -99,7 +100,7 @@ const createGame = async (req, res) => {
         res.status(500).json({ message: "Error creating game", error });
     }
 }
-    
+
 
 const getAllGames = async (req, res) => {
 
@@ -128,7 +129,7 @@ const getAllGames = async (req, res) => {
             model: Perspective,
             through: { attributes: [] }
         }
-    ]
+        ]
     })
     res.status(200).send(games)
 
@@ -164,7 +165,7 @@ const getGameById = async (req, res) => {
                 model: Perspective,
                 through: { attributes: [] }
             }
-        ]
+            ]
         },
         { where: { id: id } })
     res.status(200).send(game)
@@ -212,7 +213,7 @@ const deleteGame = async (req, res) => {
                 model: Perspective,
                 through: { attributes: [] }
             }
-        ]
+            ]
         },
         { where: { id: id } });
     res.status(200).send("game deleted")

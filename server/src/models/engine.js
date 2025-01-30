@@ -2,7 +2,7 @@
 
 module.exports = (sequelize, DataTypes) => {
 
-    const Engine = sequelize.define("platform", {
+    const Engine = sequelize.define("engine", {
 
         id: {
             type: DataTypes.INTEGER,
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         name:{
             type:DataTypes.STRING,
             unique: true,
-            allowNull: false
+            allowNull: true
         }
 
     })
