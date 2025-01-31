@@ -64,7 +64,7 @@ db.gameModes.belongsToMany(db.game, { through: "gameGameModes" })
 
 
 
-db.sequelize.sync({ force: true })
+db.sequelize.sync({ force: false })
     .then(() => {
         console.log("sync done")
 

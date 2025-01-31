@@ -7,6 +7,7 @@ const Developer = gameDb.developer
 const Publisher = gameDb.publisher
 const Engine = gameDb.engine
 const Perspective = gameDb.perspective
+const GameModes = gameDb.gameModes
 
 
 
@@ -89,9 +90,8 @@ const createGame = async (req, res) => {
             await newGame.setPerspective(perspectiveIds);
         }
 
-        // fixnout gameModes a perspektivy
         const createdGame = await Game.findByPk(newGame.id, {
-            include: [Genre, Platform, Developer, Publisher, Engine]
+            include: [Genre, Platform, Developer, Publisher, Engine, GameModes, Perspective]
         });
 
         res.status(201).json(createdGame);
@@ -127,6 +127,10 @@ const getAllGames = async (req, res) => {
         },
         {
             model: Perspective,
+            through: { attributes: [] }
+        },
+        {
+            model: GameModes,
             through: { attributes: [] }
         }
         ]
@@ -164,6 +168,10 @@ const getGameById = async (req, res) => {
             {
                 model: Perspective,
                 through: { attributes: [] }
+            },
+            {
+                model: GameModes,
+                through: { attributes: [] }
             }
             ]
         },
@@ -172,14 +180,82 @@ const getGameById = async (req, res) => {
 
 }
 
-
+//fix
 const updateGame = async (req, res) => {
 
-    let id = req.params.id
-    const game = await Game.update(req.body, { where: { id: id } })
-    res.status(200).send(game)
+    try {
+        const { id } = req.params;
+        const {
+            name,
+            engines,
+            developers,
+            publishers,
+            genreIds,
+            platformIds,
+            releaseDate,
+            gameModesIds,
+            price,
+            ytbTrailerLink,
+            perspectiveIds
+        } = req.body;
 
-}
+        
+        let game = await Game.findByPk(id);
+        if (!game) {
+            return res.status(404).json({ message: "Game not found" });
+        }
+
+       
+        await game.update({
+            name,
+            releaseDate,
+            price,
+            ytbTrailerLink
+        });
+
+        if (developers && developers.length > 0) {
+            let developerIds = [];
+            for (const dev of developers) {
+                let [developer] = await Developer.findOrCreate({ where: { name: dev } });
+                developerIds.push(developer.id);
+            }
+            await game.setDevelopers(developerIds);
+        }
+
+       
+        if (engines && engines.length > 0) {
+            let [engine] = await Engine.findOrCreate({ where: { name: engines[0] } });
+            await game.setEngine(engine);
+        }
+
+        
+        if (publishers && publishers.length > 0) {
+            let publisherIds = [];
+            for (const pub of publishers) {
+                let [publisher] = await Publisher.findOrCreate({ where: { name: pub } });
+                publisherIds.push(publisher.id);
+            }
+            await game.setPublishers(publisherIds);
+        }
+
+        
+        if (genreIds && genreIds.length > 0) await game.setGenres(genreIds);
+        if (platformIds && platformIds.length > 0) await game.setPlatforms(platformIds);
+        if (gameModesIds && gameModesIds.length > 0) await game.setGameModes(gameModesIds);
+        if (perspectiveIds && perspectiveIds.length > 0) await game.setPerspectives(perspectiveIds);
+
+       
+        const updatedGame = await Game.findByPk(game.id, {
+            include: [Genre, Platform, Developer, Publisher, Engine, GameModes, Perspective]
+        });
+
+        res.status(200).json(updatedGame);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error updating game", error });
+    }
+};
+
 
 
 
@@ -188,33 +264,6 @@ const deleteGame = async (req, res) => {
 
     let id = req.params.id
     await Game.destroy(
-        {
-            include: [{
-                model: Genre,
-                through: { attributes: [] }
-            },
-            {
-                model: Platform,
-                through: { attributes: [] }
-            },
-            {
-                model: Developer,
-                through: { attributes: [] }
-            },
-            {
-                model: Publisher,
-                through: { attributes: [] }
-            },
-            {
-                model: Engine,
-                through: { attributes: [] }
-            },
-            {
-                model: Perspective,
-                through: { attributes: [] }
-            }
-            ]
-        },
         { where: { id: id } });
     res.status(200).send("game deleted")
 
