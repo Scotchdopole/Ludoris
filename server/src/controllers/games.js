@@ -1,5 +1,4 @@
 const gameDb = require("../models/")
-const engine = require("../models/engine")
 
 const Game = gameDb.game
 const Genre = gameDb.genre
@@ -88,7 +87,7 @@ const createGame = async (req, res) => {
             await newGame.setGameModes(gameModesIds);
         }
         if (perspectiveIds && perspectiveIds.length > 0) {
-            await newGame.setPerspective(perspectiveIds);
+            await newGame.setPerspectives(perspectiveIds);
         }
 
         const createdGame = await Game.findByPk(newGame.id, {
@@ -127,11 +126,11 @@ const getAllGames = async (req, res) => {
             through: { attributes: [] }
         },
         {
-            model: Perspective,
+            model: GameModes,
             through: { attributes: [] }
         },
         {
-            model: GameModes,
+            model: Perspective,
             through: { attributes: [] }
         }
         ]
@@ -167,11 +166,11 @@ const getGameById = async (req, res) => {
                 through: { attributes: [] }
             },
             {
-                model: Perspective,
+                model: GameModes,
                 through: { attributes: [] }
             },
             {
-                model: GameModes,
+                model: Perspective,
                 through: { attributes: [] }
             }
             ]
@@ -181,7 +180,7 @@ const getGameById = async (req, res) => {
 
 }
 
-//fix
+
 const updateGame = async (req, res) => {
 
     try {
