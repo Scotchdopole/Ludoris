@@ -1,4 +1,5 @@
 const gameDb = require("../models/")
+const engine = require("../models/engine")
 
 const Game = gameDb.game
 const Genre = gameDb.genre
@@ -45,7 +46,7 @@ const createGame = async (req, res) => {
                 let [developer] = await Developer.findOrCreate({
                     where: { name: dev.name },
                     defaults: { name: dev.name }
-                });   
+                });
                 developerIds.push(developer.id);
             }
             await newGame.setDevelopers(developerIds);
@@ -187,7 +188,7 @@ const updateGame = async (req, res) => {
         const { id } = req.params;
         const {
             name,
-            engines,
+            engineIds,
             developers,
             publishers,
             genreIds,
@@ -199,13 +200,13 @@ const updateGame = async (req, res) => {
             perspectiveIds
         } = req.body;
 
-        
+
         let game = await Game.findByPk(id);
         if (!game) {
             return res.status(404).json({ message: "Game not found" });
         }
 
-       
+
         await game.update({
             name,
             releaseDate,
@@ -216,35 +217,34 @@ const updateGame = async (req, res) => {
         if (developers && developers.length > 0) {
             let developerIds = [];
             for (const dev of developers) {
-                let [developer] = await Developer.findOrCreate({ where: { name: dev } });
+                let [developer] = await Developer.findOrCreate({
+                    where: { name: dev.name }
+                });
                 developerIds.push(developer.id);
             }
             await game.setDevelopers(developerIds);
         }
 
-       
-        if (engines && engines.length > 0) {
-            let [engine] = await Engine.findOrCreate({ where: { name: engines[0] } });
-            await game.setEngine(engine);
-        }
 
-        
         if (publishers && publishers.length > 0) {
             let publisherIds = [];
             for (const pub of publishers) {
-                let [publisher] = await Publisher.findOrCreate({ where: { name: pub } });
+                let [publisher] = await Publisher.findOrCreate({
+                    where: { name: pub.name }
+                });
                 publisherIds.push(publisher.id);
             }
             await game.setPublishers(publisherIds);
         }
 
-        
+
+        if (engineIds && engineIds.length > 0) await game.setEngines(engineIds);
         if (genreIds && genreIds.length > 0) await game.setGenres(genreIds);
         if (platformIds && platformIds.length > 0) await game.setPlatforms(platformIds);
         if (gameModesIds && gameModesIds.length > 0) await game.setGameModes(gameModesIds);
         if (perspectiveIds && perspectiveIds.length > 0) await game.setPerspectives(perspectiveIds);
 
-       
+
         const updatedGame = await Game.findByPk(game.id, {
             include: [Genre, Platform, Developer, Publisher, Engine, GameModes, Perspective]
         });

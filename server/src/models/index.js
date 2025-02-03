@@ -64,10 +64,51 @@ db.gameModes.belongsToMany(db.game, { through: "gameGameModes" })
 
 
 
-db.sequelize.sync({ force: false })
-    .then(() => {
+db.sequelize.sync({ force: true })
+    .then(async () => {
         console.log("sync done")
 
+        await db.genre.bulkCreate([
+            { name: "FPS" },
+            { name: "TPS" },
+            { name: "Platformer" },
+            { name: "Hack and Slash" },
+            { name: "Battle Royale" },
+            { name: "RPG" },
+            { name: "Strategy" },
+            { name: "Simulator" },
+            { name: "Racing" },
+            { name: "Survival" },
+            { name: "Adventure" },
+            { name: "Sport" },
+            { name: "Party" },
+            { name: "Fighting" },
+        ])
+
+        await db.platform.bulkCreate([
+            { name: "Windows" },
+            { name: "Linux" },
+            { name: "macOS" },
+            { name: "Playstation" },
+            { name: "Xbox" },
+            { name: "Nintento" },
+            { name: "Android" },
+            { name: "iOS" },
+            { name: "Oculus" },
+
+        ])
+
+        await db.gameModes.bulkCreate([
+            { name: "Singleplayer" },
+            { name: "Multiplayer" },
+            { name: "Online Co-Op" },
+            { name: "Co-Op" },
+            { name: "Sandbox" },
+            { name: "Split-Screen" },
+            { name: "LAN Multiplayer" },
+           
+
+        ])
     })
 
 
