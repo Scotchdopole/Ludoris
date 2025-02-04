@@ -115,7 +115,7 @@ db.sequelize.sync({ force: true })
         ])
         await db.engine.bulkCreate([
             { name: "4A Engine" },
-            { name: "A-Frame (VR)" },
+            { name: "A-Frame" },
             { name: "Adventure Game Interpreter" },
             { name: "Adventure Game Studio" },
             { name: "Aleph One" },
