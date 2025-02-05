@@ -1,4 +1,6 @@
 const gameDb = require("../models/")
+const multer = require("multer")
+const path = require("path")
 
 const Game = gameDb.game
 const Genre = gameDb.genre
@@ -29,12 +31,15 @@ const createGame = async (req, res) => {
             perspectiveIds
         } = req.body;
 
+        let imagePath = req.file ? req.file.path : null;
+
 
         const newGame = await Game.create({
             name,
             releaseDate,
             price,
-            ytbTrailerLink
+            ytbTrailerLink,
+            image: imagePath
         });
 
 
@@ -272,12 +277,48 @@ const deleteGame = async (req, res) => {
 
 
 
+
+
+
+const storage = multer.diskStorage({
+
+    destination: (req, file, cb) => {
+        cb(null, "Images")
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+
+})
+
+
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: "1000000" },
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png/
+        const mimetype = fileTypes.test(file.mimetype)
+        const extName = fileTypes.test(path.extname(file.originalname))
+
+        if (mimetype && extName) {
+            return cb(null, true)
+        }
+        cb("unsupported file format")
+    }
+}).single("image")
+
+
+
+
+
+
 module.exports = {
     createGame,
     getGameById,
     getAllGames,
     updateGame,
-    deleteGame
+    deleteGame,
+    upload
 }
 
 

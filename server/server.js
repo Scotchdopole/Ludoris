@@ -4,9 +4,6 @@ const cors = require("cors")
 const app = express()
 
 
-
-
-
 //middleware
 
 app.use(cors());
@@ -18,6 +15,9 @@ app.use(express.urlencoded({ extended: true }))
 //router
 const router = require("./src/routes/games.js")
 app.use('/api/games', router)
+
+
+app.use("/Images", express.static("./Images"))
 
 
 

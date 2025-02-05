@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
 
+        image: {
+            type: DataTypes.STRING,
+        },
+
         releaseDate: {
             type: DataTypes.DATEONLY,
             allowNull: true
@@ -30,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         }
 
-         
+
 
 
 

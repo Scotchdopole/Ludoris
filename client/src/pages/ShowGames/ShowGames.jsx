@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react'
+import GameCard from '../../components/gameCard/GameCard';
 
 
 const ShowGames = () => {
@@ -10,7 +11,7 @@ const ShowGames = () => {
 
     useEffect(() => {
         const getGamesData = async () => {
-            const { data } = await axios.get('http://localhost:3000/api/games/allGames')
+            const { data } = await axios.get('http://localhost:3000/api/games/')
             console.log(data)
             setGame(data)
         }
@@ -22,8 +23,13 @@ const ShowGames = () => {
     return (
     <>
         <div>ShowGames</div>
-        <p>{game.name}</p>
-        <p>{game.developers?.[0]?.name}</p>
+        <div>
+            {
+                game.map(game => (
+                    <GameCard game={game} />
+                ))
+            }
+        </div>
     </>
   )
 }
