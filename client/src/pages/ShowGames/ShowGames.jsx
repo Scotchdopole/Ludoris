@@ -18,7 +18,7 @@ const ShowGames = () => {
         getGamesData()
     }, [])
 
-
+    console.log(game?.[0]?.image)
 
     return (
     <>
@@ -26,7 +26,7 @@ const ShowGames = () => {
         <div>
             {
                 game.map(game => (
-                    <GameCard game={game} />
+                    <GameCard key={game.id} game={game} />
                 ))
             }
         </div>
