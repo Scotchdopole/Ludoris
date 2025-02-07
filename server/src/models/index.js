@@ -70,8 +70,7 @@ db.sequelize.sync({ force: true })
 
         //seeding
         await db.genre.bulkCreate([
-            { name: "FPS" },
-            { name: "TPS" },
+            {name: "Shooter"},
             { name: "Platformer" },
             { name: "Hack and Slash" },
             { name: "Battle Royale" },

@@ -148,9 +148,10 @@ const getAllGames = async (req, res) => {
 const getGameById = async (req, res) => {
 
     let id = req.params.id
-    let game = await Game.findOne(
-        {
-            include: [{
+    let game = await Game.findOne({
+        where: { id: id },
+        include: [
+            {
                 model: Genre,
                 through: { attributes: [] }
             },
@@ -178,9 +179,9 @@ const getGameById = async (req, res) => {
                 model: Perspective,
                 through: { attributes: [] }
             }
-            ]
-        },
-        { where: { id: id } })
+        ]
+    });
+
     res.status(200).send(game)
 
 }
