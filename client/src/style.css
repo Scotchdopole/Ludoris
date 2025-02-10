@@ -1,0 +1,19 @@
+*{
+    font-family: sfpro-r-bold;
+}
+
+@font-face {
+    font-family: sfpro-r-bold;
+    src: url(./assets/fonts/SF-Pro-Rounded-Bold.otf);
+  }
+  
+  @font-face {
+    font-family: sfpro-r-thin;
+    src: url(./assets/fonts/SF-Pro-Rounded-Thin.otf);
+  }
+  
+
+  @font-face {
+    font-family: sfpro-r-regular;
+    src: url(./assets/fonts/SF-Pro-Rounded-Regular.otf);
+  }

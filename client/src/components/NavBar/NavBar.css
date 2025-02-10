@@ -1,0 +1,51 @@
+*{
+    transition: all 300ms ease-in-out;
+}
+
+.NavBar-Main {
+
+    width: 50%;
+    height: 60px;
+    position: fixed;
+    top: 20px;
+    background: #4b3e6944;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.322);
+    backdrop-filter: blur(10.9px);
+    -webkit-backdrop-filter: blur(10.9px);
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    align-items: center;
+
+}
+
+.NavBar-Main:hover{
+    height: 65px;
+    width: 52%;
+    background: #33265571;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.199);
+}
+
+.NavBar-SearchBar{
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.171);
+    height: 25px;
+    margin-left: 20px;
+    width: 200px;
+    padding: 5px;
+    padding-left: 10px;
+    font-size: 16px;
+
+}
+
+.NavBar-SearchBar:focus{
+    outline: none;
+    height: 30px;
+
+}
+
+.NavBar-SearchBar:hover{
+    height: 30px;
+}

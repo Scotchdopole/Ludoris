@@ -1,0 +1,6 @@
+body{
+    background-image: url("../../assets/images/blob.png");
+    background-repeat:round;
+    background-size: contain;
+    background-position-x: center;
+}
