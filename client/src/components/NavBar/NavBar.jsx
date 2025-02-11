@@ -2,6 +2,7 @@ import React from 'react'
 import "./NavBar.css"
 import { useEffect, useRef } from "react";
 import "../../style.css"
+import { AiOutlineSearch } from "react-icons/ai";
 
 
 export default function NavBar() {
@@ -26,9 +27,23 @@ export default function NavBar() {
   }, []);
 
   return (
+    
     <div className='NavBar-Main'>
-        <input ref={searchRef} className='NavBar-SearchBar' type="text"/>
-        
+        <div className="NavBar-SearchBox">
+            <input ref={searchRef} className='NavBar-SearchBar' type="text" placeholder='Search'/>
+            <AiOutlineSearch className='NavBar-SearchIcon' />
+            <div className="NavBar-SearchBar-Shortcut-cotainer">
+                <div className="NavBar-SearchBar-Shortcut">CTRL</div>
+                <span>+</span>
+                <div className="NavBar-SearchBar-Shortcut">K</div>
+            </div>
+        </div>
+        <div className="NavBar-Column">
+        </div>
+        <div className="NavBar-Buttons">
+            <button className='NavBar-Button'>EXPLORE</button>
+            <button className='NavBar-Button'>ABOUT</button>
+        </div>   
     </div>
   )
 }

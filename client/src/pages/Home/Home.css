@@ -1,6 +1,43 @@
-body{
+@font-face {
+    font-family: Montserrat;
+    src: url(../../assets/fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+body {
     background-image: url("../../assets/images/blob.png");
-    background-repeat:round;
+    background-repeat: round;
     background-size: contain;
     background-position-x: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Home-Hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 700px;
+    user-select: none;
+}
+
+.Home-HeroText {
+    font-size: 180px;
+    font-family: Montserrat;
+    font-weight: 600;
+    letter-spacing: 30px;
+    margin-top: -50px;
+}
+
+.Home-HeroText:hover {
+    font-weight: 200;
+    letter-spacing: 20px;
+    font-size: 180px;
+}
+
+
+.Home-HeroSubText {
+    text-align: center;
+    margin-top: -50px;
+    font-size: 30px;
 }

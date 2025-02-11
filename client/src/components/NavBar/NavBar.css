@@ -1,13 +1,12 @@
-*{
+* {
     transition: all 300ms ease-in-out;
 }
 
 .NavBar-Main {
-
     width: 50%;
     height: 60px;
     position: fixed;
-    top: 20px;
+    top: 17px;
     background: #4b3e6944;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.322);
@@ -17,35 +16,93 @@
     transform: translate(-50%, 0);
     display: flex;
     align-items: center;
-
+    justify-content: space-between;
 }
 
-.NavBar-Main:hover{
+.NavBar-Main:hover {
     height: 65px;
     width: 52%;
     background: #33265571;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.199);
+    top: 30px;
+    border-radius: 30px;
 }
 
-.NavBar-SearchBar{
+.NavBar-SearchBar {
     border: none;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.171);
     height: 25px;
     margin-left: 20px;
-    width: 200px;
+    width: 300px;
     padding: 5px;
-    padding-left: 10px;
+    padding-left: 40px;
     font-size: 16px;
-
 }
 
-.NavBar-SearchBar:focus{
+.NavBar-SearchBar:focus {
     outline: none;
     height: 30px;
+    border-radius: 30px;
+}
+
+.NavBar-SearchBar:hover {
+    height: 30px;
+    border-radius: 30px;
 
 }
 
-.NavBar-SearchBar:hover{
-    height: 30px;
+.NavBar-SearchIcon {
+    font-size: 25px;
+    position: relative;
+    right: 335px;
+    top: 8px;
+}
+
+.NavBar-SearchBox {
+    display: flex;
+    flex-direction: row;
+}
+
+.NavBar-Buttons {
+    width: fit-content;
+    margin-right: 20px;
+}
+
+.NavBar-Column {
+    width: fit-content;
+}
+
+.NavBar-SearchBar-Shortcut-cotainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 140px;
+}
+
+.NavBar-SearchBar-Shortcut {
+    background-color: rgba(0, 0, 0, 0.329);
+    border-radius: 7px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.NavBar-Button {
+    background-color: #00000000;
+    border: none;
+    border-radius: 30px;
+}
+
+.NavBar-Button:hover {
+    background-color: #00000000;
+}
+
+.NavBar-Buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
