@@ -3,7 +3,8 @@
 }
 
 .NavBar-Main {
-    width: 50%;
+    width: 100%;
+    max-width: 1000px;
     height: 60px;
     position: fixed;
     top: 17px;
@@ -21,47 +22,39 @@
 
 .NavBar-Main:hover {
     height: 65px;
-    width: 52%;
+    width: 100%;
     background: #33265571;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.199);
     top: 30px;
     border-radius: 30px;
 }
 
-.NavBar-SearchBar {
-    border: none;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.171);
-    height: 25px;
-    margin-left: 20px;
-    width: 300px;
-    padding: 5px;
-    padding-left: 40px;
-    font-size: 16px;
-}
-
-.NavBar-SearchBar:focus {
-    outline: none;
-    height: 30px;
-    border-radius: 30px;
-}
-
-.NavBar-SearchBar:hover {
-    height: 30px;
-    border-radius: 30px;
-
-}
-
-.NavBar-SearchIcon {
-    font-size: 25px;
-    position: relative;
-    right: 335px;
-    top: 8px;
-}
-
-.NavBar-SearchBox {
+.NavBar-SearchBox{
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.NavBar-SearchBar{
+    background-color: #00000031;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    padding-left: 20px;
+    width: 300px;
+    font-size: 17px;
+    margin-left: 10px;
+}
+
+.NavBar-SearchBar:focus{
+    border: none;
+    height: 40px;
+    outline: none;
+}
+
+.NavBar-SearchIcon{
+    font-size: 20px;
 }
 
 .NavBar-Buttons {
@@ -69,9 +62,6 @@
     margin-right: 20px;
 }
 
-.NavBar-Column {
-    width: fit-content;
-}
 
 .NavBar-SearchBar-Shortcut-cotainer {
     display: flex;
@@ -105,4 +95,17 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
+}
+
+@media (max-width:800px){
+
+    .NavBar-Main{
+        flex-direction: column;
+        height: 100px;
+        padding-top: 20px;
+    }
+    .NavBar-SearchBar-Shortcut-cotainer{
+        display: none;
+    }
+
 }

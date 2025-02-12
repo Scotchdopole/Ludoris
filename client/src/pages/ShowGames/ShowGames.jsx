@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react'
-import GameCard from '../../components/gameCard/GameCard';
+import GameCard from '../../components/GameCard/GameCard';
 
 
 const ShowGames = () => {

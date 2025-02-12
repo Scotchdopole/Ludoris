@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 
 
+
 const GamePage = () => {
 
     const [game, setGame] = useState([]);
@@ -21,10 +22,10 @@ const GamePage = () => {
     }, [])
 
     return (
-    <>
+    <div className="GamePage-body">
         <div>GamePage</div>
         <p>{game.name}</p>
-    </>
+    </div>
   )
 }
 

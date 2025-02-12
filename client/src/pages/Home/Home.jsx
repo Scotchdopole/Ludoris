@@ -7,19 +7,19 @@ import NavBar from '../../components/NavBar/NavBar'
 
 export default function Home() {
   return (
-    <>
+    <div className='Home-body'>
     
     <NavBar></NavBar>
 
     <div className="Home-Hero">
-      <span className="Home-HeroText">
+      <p className="Home-HeroText">
         LUDORIS
-      </span> 
-      <span className="Home-HeroSubText">
+      </p> 
+      <p className="Home-HeroSubText">
         Every game. Every detail. Instantly.
-      </span>
+      </p>
     </div>
     
-    </>
+    </div>
   )
 }

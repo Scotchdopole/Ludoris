@@ -1,5 +1,6 @@
 *{
     font-family: sfpro-r-bold;
+    transition: 300ms all ease-in-out;
 }
 
 @font-face {

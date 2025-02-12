@@ -30,8 +30,8 @@ export default function NavBar() {
     
     <div className='NavBar-Main'>
         <div className="NavBar-SearchBox">
+        <AiOutlineSearch className='NavBar-SearchIcon' />
             <input ref={searchRef} className='NavBar-SearchBar' type="text" placeholder='Search'/>
-            <AiOutlineSearch className='NavBar-SearchIcon' />
             <div className="NavBar-SearchBar-Shortcut-cotainer">
                 <div className="NavBar-SearchBar-Shortcut">CTRL</div>
                 <span>+</span>
