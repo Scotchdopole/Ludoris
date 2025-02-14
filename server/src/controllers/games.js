@@ -205,6 +205,8 @@ const updateGame = async (req, res) => {
             perspectiveIds
         } = req.body;
 
+        
+
 
         let game = await Game.findByPk(id);
         if (!game) {
@@ -216,7 +218,7 @@ const updateGame = async (req, res) => {
             name,
             releaseDate,
             price,
-            ytbTrailerLink
+            ytbTrailerLink,
         });
 
         if (developers && developers.length > 0) {

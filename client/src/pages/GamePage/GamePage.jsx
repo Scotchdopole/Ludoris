@@ -2,6 +2,9 @@ import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import "./GamePage.css"
+import NavBar from "../../components/NavBar/NavBar"
+
 
 
 
@@ -10,7 +13,6 @@ const GamePage = () => {
     const [game, setGame] = useState([]);
 
     let {id} = useParams();
-    console.log(id)
 
     useEffect(() => {
         const getGamesData = async () => {
@@ -21,10 +23,14 @@ const GamePage = () => {
         getGamesData()
     }, [])
 
+    const coverImage = `http://localhost:3000/${game.image}`
+
+
     return (
     <div className="GamePage-body">
-        <div>GamePage</div>
+        <NavBar></NavBar>
         <p>{game.name}</p>
+        <img src={coverImage} alt="cover image" />
     </div>
   )
 }
