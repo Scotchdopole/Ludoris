@@ -23,14 +23,29 @@ const GamePage = () => {
         getGamesData()
     }, [])
 
+    console.log(game.image)
+
     const coverImage = `http://localhost:3000/${game.image}`
 
 
     return (
     <div className="GamePage-body">
         <NavBar></NavBar>
-        <p>{game.name}</p>
-        <img src={coverImage} alt="cover image" />
+        <div className="GamePage-MainContainer">
+            <span className='GamePage-Title'>{game.name}</span>
+                <div className="GamePage-Wrapper">
+                    <div className="GamePage-ImageContainer">
+                        <img className='GamePage-CoverImage' src={coverImage} alt="cover image" />
+                    </div>
+                    <div className='GamePage-Container'>
+                        <p>{game.genres?.[0]?.name}</p>
+                    </div>
+
+                    <div className='GamePage-Container'>
+
+                    </div>
+                </div>
+        </div>
     </div>
   )
 }

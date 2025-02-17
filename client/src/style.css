@@ -3,6 +3,12 @@
     transition: 300ms all ease-in-out;
 }
 
+:root{
+  --primaryBackgorund: #0e0d11;
+  --secondaryBackground : #1d1b22;
+  --primaryFont: #ffffff;
+}
+
 @font-face {
     font-family: sfpro-r-bold;
     src: url(./assets/fonts/SF-Pro-Rounded-Bold.otf);

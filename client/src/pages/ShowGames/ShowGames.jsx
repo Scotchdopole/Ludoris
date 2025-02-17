@@ -18,7 +18,7 @@ const ShowGames = () => {
         getGamesData()
     }, [])
 
-    console.log(game?.[0]?.image)
+
 
     return (
     <>
