@@ -26,6 +26,7 @@
     width: fit-content;
     aspect-ratio: 2/3;
     height: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.322);
 
 }
 
@@ -33,10 +34,16 @@
     background-color: var(--secondaryBackground);
     width: 500px;
     border-radius: 15px;
-    padding-left: 20px;
+    padding-left: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.322);
+    backdrop-filter: blur(10.9px);
+    -webkit-backdrop-filter: blur(10.9px);
 }
 
 .GamePage-Container>div>p {
@@ -49,6 +56,7 @@
 
 .GamePage-Container>div>span {
     color: var(--secondaryFont);
+    font-size: 20px;
 
 }
 
@@ -56,4 +64,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.GamePage-Wrapper2{
+
 }
