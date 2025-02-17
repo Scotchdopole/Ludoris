@@ -38,7 +38,24 @@ const GamePage = () => {
                         <img className='GamePage-CoverImage' src={coverImage} alt="cover image" />
                     </div>
                     <div className='GamePage-Container'>
-                        <p>{game.genres?.[0]?.name}</p>
+                        <div>
+                        <p>Genres</p>
+                            <span>
+                                {game?.genres?.map(genre => genre.name).join(", ") || "No genres"}
+                            </span>
+                            </div>
+                            <div>
+                        <p>Platforms</p>
+                            <span>
+                                {game?.platforms?.map(platform => platform.name).join(", ") || "No platforms"}
+                            </span>
+                            </div>
+                            <div>
+                        <p>Engine</p>
+                            <span>
+                                {game?.engines?.map(engine => engine.name).join(", ") || "No engines"}
+                            </span>
+                            </div>
                     </div>
 
                     <div className='GamePage-Container'>

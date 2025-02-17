@@ -1,4 +1,4 @@
-.GamePage-body{
+.GamePage-body {
     background-color: var(--primaryBackgorund);
     width: 100%;
     height: 100%;
@@ -7,7 +7,7 @@
     left: 0;
 }
 
-.GamePage-MainContainer{
+.GamePage-MainContainer {
     margin-top: 100px;
     padding-left: 40px;
     padding-right: 40px;
@@ -15,27 +15,44 @@
     flex-direction: column;
 }
 
-.GamePage-Title{
+.GamePage-Title {
     color: var(primaryFont);
     font-size: 40px;
 }
 
-.GamePage-CoverImage{
+.GamePage-CoverImage {
     border-radius: 15px;
     display: inline;
     width: fit-content;
     aspect-ratio: 2/3;
     height: 400px;
-    
+
 }
 
-.GamePage-Container{
+.GamePage-Container {
     background-color: var(--secondaryBackground);
     width: 500px;
     border-radius: 15px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.GamePage-Wrapper{
+.GamePage-Container>div>p {
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+
+
+}
+
+.GamePage-Container>div>span {
+    color: var(--secondaryFont);
+
+}
+
+.GamePage-Wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
