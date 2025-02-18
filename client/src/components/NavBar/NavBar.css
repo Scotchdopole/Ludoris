@@ -7,8 +7,9 @@
     max-width: 1000px;
     height: 60px;
     position: fixed;
+    z-index: 999;
     top: 17px;
-    background: #4b3e6944;
+    background: var(--secondaryBackground);
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.322);
     backdrop-filter: blur(10.9px);
@@ -18,6 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    outline: 0px solid #4f339671;
 }
 
 .NavBar-Main:hover {
@@ -27,18 +29,20 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.199);
     top: 30px;
     border-radius: 30px;
+    outline: 1px solid #4f339671;
+    outline-offset: 10px;
 }
 
-.NavBar-SearchBox{
+.NavBar-SearchBox {
     display: flex;
     justify-content: center;
     align-items: center;
     padding-left: 20px;
 }
 
-.NavBar-SearchBar{
+.NavBar-SearchBar {
     background-color: #00000031;
-    height: 35px;
+    height: 40px;
     border: none;
     border-radius: 20px;
     padding-left: 20px;
@@ -47,13 +51,12 @@
     margin-left: 10px;
 }
 
-.NavBar-SearchBar:focus{
+.NavBar-SearchBar:focus {
     border: none;
-    height: 40px;
     outline: none;
 }
 
-.NavBar-SearchIcon{
+.NavBar-SearchIcon {
     font-size: 20px;
 }
 
@@ -97,14 +100,15 @@
     gap: 20px;
 }
 
-@media (max-width:800px){
+@media (max-width:800px) {
 
-    .NavBar-Main{
+    .NavBar-Main {
         flex-direction: column;
         height: 100px;
         padding-top: 20px;
     }
-    .NavBar-SearchBar-Shortcut-cotainer{
+
+    .NavBar-SearchBar-Shortcut-cotainer {
         display: none;
     }
 

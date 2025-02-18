@@ -5,7 +5,8 @@
 
 :root{
   --primaryBackgorund: #0e0d11;
-  --secondaryBackground : #1d1b22;
+  --secondaryBackground : #4b3e6944;
+  --secondaryBackgroundHover : #33265571;
   --primaryFont: #ffffff;
   --secondaryFont: #8C859F;
 }

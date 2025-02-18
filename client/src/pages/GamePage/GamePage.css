@@ -9,8 +9,8 @@
 
 .GamePage-MainContainer {
     margin-top: 100px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 150px;
+    padding-right: 150px;
     display: flex;
     flex-direction: column;
 }
@@ -32,7 +32,7 @@
 
 .GamePage-Container {
     background-color: var(--secondaryBackground);
-    width: 500px;
+    width: 370px;
     border-radius: 15px;
     padding-left: 30px;
     display: flex;
@@ -44,6 +44,15 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.322);
     backdrop-filter: blur(10.9px);
     -webkit-backdrop-filter: blur(10.9px);
+}
+
+.GamePage-Container:hover{
+    transform: scale(1.02);
+    background: var(--secondaryBackgroundHover);
+}
+
+.GamePage-Container:hover > div > p{
+    
 }
 
 .GamePage-Container>div>p {
@@ -66,6 +75,12 @@
     justify-content: space-between;
 }
 
-.GamePage-Wrapper2{
 
+
+iframe{
+border-radius: 10px;
+  overflow: hidden;
+  z-index: 1;
+  height: 320px;
+  width: 480px;
 }

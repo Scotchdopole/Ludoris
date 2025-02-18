@@ -4,40 +4,38 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import "./GamePage.css"
 import NavBar from "../../components/NavBar/NavBar"
+import YouTubeVideoId from 'youtube-video-id';
 
 
 
 
 const GamePage = () => {
 
-    const [game, setGame] = useState([]);
+    const [game, setGame] = useState([null]);
 
     let {id} = useParams();
 
     useEffect(() => {
         const getGamesData = async () => {
-            const { data } = await axios.get(`http://localhost:3000/api/games/${id}`)
-            console.log(data)
-            setGame(data)
-        }
+            try{
+                const {data} = await axios.get(`http://localhost:3000/api/games/${id}`)
+                console.log(data);
+                setGame(data);
+            } catch (err){
+                console.log(err)
+            }
+            
+        };
         getGamesData()
-    }, [])
+    }, [id])
 
-    console.log(game.ytbTrailerLink)
+  
 
-    const getIdFromYtUrl = (ytUrl) => {
-        const match = ytUrl.match(/(?:youtube\.com\/(?:.*[?&]v=|.*\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-        return match ? match[1] : null;
-      };
-      
+    
+    const videoId = game.ytbTrailerLink ? YouTubeVideoId(game.ytbTrailerLink) : null;
 
-      if (typeof game.ytbTrailerLink !== "string") {
-        console.error("ytbTrailerLink not a string", game.ytbTrailerLink);
-      } else {
-        const videoId = getIdFromYtUrl(game.ytbTrailerLink.trim());
-        console.log(videoId);
-      }
-      
+
+
 
     
 
@@ -57,33 +55,68 @@ const GamePage = () => {
                         <div>
                         <p>Genres</p>
                             <span>
-                                {game?.genres?.map(genre => genre.name).join(", ") || "No genres"}
+                                {game?.genres?.map(genre => genre.name).join(", ") || "No data"}
                             </span>
                             </div>
                             <div>
                         <p>Platforms</p>
                             <span>
-                                {game?.platforms?.map(platform => platform.name).join(", ") || "No platforms"}
+                                {game?.platforms?.map(platform => platform.name).join(", ") || "No data"}
                             </span>
                             </div>
                             <div>
-                        <p>Engine</p>
+                        <p>Perspectives</p>
                             <span>
-                                {game?.engines?.map(engine => engine.name).join(", ") || "No engines"}
+                                {game?.perspectives?.map(perspective => perspective.name).join(", ") || "No data"}
                             </span>
                             </div>
                     </div>
 
                     <div className='GamePage-Container'>
-
+                        <div>
+                        <p>Developers</p>
+                            <span>
+                                {game?.developers?.map(developer => developer.name).join(", ") || "No data"}
+                            </span>
+                            </div>
+                            <div>
+                        <p>Publishers</p>
+                            <span>
+                                {game?.publishers?.map(publisher => publisher.name).join(", ") || "No data"}
+                            </span>
+                            </div>
+                            <div>
+                        <p>Engine</p>
+                            <span>
+                                {game?.engines?.map(engine => engine.name).join(", ") || "No data"}
+                            </span>
+                            </div>
+                    </div>
+                    <div className='GamePage-Container'>
+                    <div>
+                        <p>Developers</p>
+                            <span>
+                                {game?.developers?.map(developer => developer.name).join(", ") || "No data"}
+                            </span>
+                            </div>
+                            <div>
+                        <p>Publishers</p>
+                            <span>
+                                {game?.publishers?.map(publisher => publisher.name).join(", ") || "No data"}
+                            </span>
+                            </div>
+                            <div>
+                        <p>Price</p>
+                            <span>
+                                {game.price || "No data"}
+                            </span>
+                            </div>
                     </div>
                 </div>
             <div className="GamePage-Wrapper2">
-            {/* <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videoId}`} 
-                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
-                encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen></iframe> */}
+            <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videoId}`} 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
     </div>
