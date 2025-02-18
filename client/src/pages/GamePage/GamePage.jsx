@@ -23,6 +23,22 @@ const GamePage = () => {
         getGamesData()
     }, [])
 
+    console.log(game.ytbTrailerLink)
+
+    const getIdFromYtUrl = (ytUrl) => {
+        const match = ytUrl.match(/(?:youtube\.com\/(?:.*[?&]v=|.*\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+        return match ? match[1] : null;
+      };
+      
+
+      if (typeof game.ytbTrailerLink !== "string") {
+        console.error("ytbTrailerLink not a string", game.ytbTrailerLink);
+      } else {
+        const videoId = getIdFromYtUrl(game.ytbTrailerLink.trim());
+        console.log(videoId);
+      }
+      
+
     
 
     const coverImage = `http://localhost:3000/${game.image}`
@@ -63,11 +79,11 @@ const GamePage = () => {
                     </div>
                 </div>
             <div className="GamePage-Wrapper2">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/c80dVYcL69E" 
+            {/* <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videoId}`} 
                 title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
                 encrypted-media; gyroscope; picture-in-picture; web-share" 
                 referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen></iframe>
+                allowfullscreen></iframe> */}
             </div>
         </div>
     </div>
