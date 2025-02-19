@@ -20,14 +20,20 @@
     font-size: 40px;
 }
 
-.GamePage-CoverImage {
+.GamePage-ImageContainer {
+    height: 390px;
     border-radius: 15px;
-    display: inline;
-    width: fit-content;
-    aspect-ratio: 2/3;
-    height: 400px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.322);
+    width: 260px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+}
 
+.GamePage-ImageContainer:hover {
+    transform: scale(1.02);
+    border-radius: 20px;
+    
 }
 
 .GamePage-Container {
@@ -51,9 +57,6 @@
     background: var(--secondaryBackgroundHover);
 }
 
-.GamePage-Container:hover > div > p{
-    
-}
 
 .GamePage-Container>div>p {
     font-size: 30px;
@@ -83,4 +86,17 @@ border-radius: 10px;
   z-index: 1;
   height: 320px;
   width: 480px;
+}
+
+
+@media only screen and (max-width: 1600px) {
+    .GamePage-MainContainer {
+        padding-left: 20px;
+        padding-right: 20px;
+        
+    }
+
+    .GamePage-Container {
+        width: 350px;
+    }
 }

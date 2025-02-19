@@ -5,16 +5,19 @@ import { useParams } from 'react-router-dom';
 import "./GamePage.css"
 import NavBar from "../../components/NavBar/NavBar"
 import YouTubeVideoId from 'youtube-video-id';
+import { average } from 'color.js'
 
 
 
 
 const GamePage = () => {
 
-    const [game, setGame] = useState([null]);
+    const [game, setGame] = useState({});
+    const [gamePrice, setGamePrice] = useState(null);
 
     let {id} = useParams();
 
+    //get games data
     useEffect(() => {
         const getGamesData = async () => {
             try{
@@ -29,18 +32,35 @@ const GamePage = () => {
         getGamesData()
     }, [id])
 
-  
-
-    
+    //video id from youtb url
     const videoId = game.ytbTrailerLink ? YouTubeVideoId(game.ytbTrailerLink) : null;
 
-
-
-
+    //price converter
+    useEffect(() => {
+        if (game.price == 0) {
+            setGamePrice("free");
+        } else {
+            setGamePrice("€" + game.price);
+        }
+    }, [game]); 
     
-
+    //get cover image url
     const coverImage = `http://localhost:3000/${game.image}`
 
+    //date formater
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString("cs-CZ", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+        });
+    };
+
+    //get color from cover image
+    average(coverImage, {format: "hex"}, { amount: 1 }).then(color => {
+        console.log(color)
+      })
 
     return (
     <div className="GamePage-body">
@@ -48,8 +68,11 @@ const GamePage = () => {
         <div className="GamePage-MainContainer">
             <span className='GamePage-Title'>{game.name}</span>
                 <div className="GamePage-Wrapper">
-                    <div className="GamePage-ImageContainer">
-                        <img className='GamePage-CoverImage' src={coverImage} alt="cover image" />
+            {/* fix obrazek(barvu) */}
+                <div className="GamePage-ImageContainer" style={{ 
+                    backgroundImage: coverImage ? `url(${coverImage})` : "none", 
+                    boxShadow: color ? `0px 10px 44px 0px ${color}` : "none" 
+                        }}>      
                     </div>
                     <div className='GamePage-Container'>
                         <div>
@@ -86,29 +109,29 @@ const GamePage = () => {
                             </span>
                             </div>
                             <div>
-                        <p>Engine</p>
+                        <p>Game modes</p>
                             <span>
-                                {game?.engines?.map(engine => engine.name).join(", ") || "No data"}
+                                {game?.gameModes?.map(gameMode => gameMode.name).join(", ") || "No data"}
                             </span>
                             </div>
                     </div>
                     <div className='GamePage-Container'>
                     <div>
-                        <p>Developers</p>
+                        <p>Engine</p>
                             <span>
-                                {game?.developers?.map(developer => developer.name).join(", ") || "No data"}
+                                {game?.engines?.map(engine => engine.name).join(", ") || "No data"}
                             </span>
                             </div>
                             <div>
-                        <p>Publishers</p>
+                        <p>Release date</p>
                             <span>
-                                {game?.publishers?.map(publisher => publisher.name).join(", ") || "No data"}
+                                {formatDate(game.releaseDate) || "No data"}
                             </span>
                             </div>
                             <div>
                         <p>Price</p>
                             <span>
-                                {game.price || "No data"}
+                                {gamePrice || "No data"}
                             </span>
                             </div>
                     </div>
