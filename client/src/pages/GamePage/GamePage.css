@@ -18,6 +18,7 @@
 .GamePage-Title {
     color: var(primaryFont);
     font-size: 40px;
+    user-select: none;
 }
 
 .GamePage-CoverImage {

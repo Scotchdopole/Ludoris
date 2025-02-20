@@ -10,11 +10,13 @@ import { average } from 'color.js'
 
 
 
+
 const GamePage = () => {
 
     const [game, setGame] = useState({});
     const [gamePrice, setGamePrice] = useState(null);
     const [isHovered, setIsHovered] = useState(false);
+    const [dominantColor, setDominantColor] = useState(null);
 
     let { id } = useParams();
 
@@ -60,10 +62,14 @@ const GamePage = () => {
     };
 
     //get color from cover image
-    //fix barvy
-    average(coverImage, { format: "hex" , amount: 1 }).then(color => {
-        console.log(color)
-    })
+    useEffect(() => {
+        average(coverImage, { format: "hex", amount: 1, sample: 30 })
+            .then(color => {
+                console.log(color);
+                setDominantColor(color);
+            })
+            .catch(err => console.error('Error getting color:', err));
+    }, [coverImage]);
 
     return (
         <div className="GamePage-body">
@@ -75,7 +81,7 @@ const GamePage = () => {
                         src={coverImage}
                         alt="Cover Image"
                         className="GamePage-CoverImage"
-                        style={isHovered ? { boxShadow: `0px 0px 70px 3px ${color})` } : {}}
+                        style={isHovered ? { boxShadow: `0px 0px 70px 3px ${dominantColor}` } : {}}
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
                     />
