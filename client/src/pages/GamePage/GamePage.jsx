@@ -6,6 +6,7 @@ import "./GamePage.css"
 import NavBar from "../../components/NavBar/NavBar"
 import YouTubeVideoId from 'youtube-video-id';
 import { average } from 'color.js'
+import '@justinribeiro/lite-youtube';
 
 
 
@@ -148,12 +149,12 @@ const GamePage = () => {
                     </div>
                 </div>
                 <div className="GamePage-Wrapper2">
-                    <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videoId}`}
-                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <lite-youtube videoid={videoId} posterquality="maxresdefault" params="controls=0&showinfo=0&rel=0"  ></lite-youtube>
                 </div>
             </div>
+            <div className="blob"></div>
         </div>
+        
     )
 }
 

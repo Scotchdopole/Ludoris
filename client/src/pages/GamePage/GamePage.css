@@ -5,6 +5,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 0;
 }
 
 .GamePage-MainContainer {
@@ -45,9 +46,10 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.322);
     backdrop-filter: blur(10.9px);
     -webkit-backdrop-filter: blur(10.9px);
+    z-index: 1;
 }
 
-.GamePage-Container:hover{
+.GamePage-Container:hover {
     transform: scale(1.02);
     background: var(--secondaryBackgroundHover);
 }
@@ -73,14 +75,21 @@
     justify-content: space-between;
 }
 
+.GamePage-Wrapper2 {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 
-iframe{
-border-radius: 10px;
-  overflow: hidden;
-  z-index: 1;
-  height: 320px;
-  width: 480px;
+
+lite-youtube {
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1;
+    height: 360px;
+    width: 640px;
 }
 
 
@@ -88,10 +97,29 @@ border-radius: 10px;
     .GamePage-MainContainer {
         padding-left: 20px;
         padding-right: 20px;
-        
+
     }
 
     .GamePage-Container {
         width: 350px;
     }
+}
+
+.blob {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -600px;
+    opacity: 0.5;
+    width: 600px;
+    aspect-ratio: 1/1;
+    animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
+    filter: brightness(0.5);
+    filter: blur(40px);
+    z-index: -1;
+    background: linear-gradient(47deg,
+            rgba(255, 88, 139, 1) 21%,
+            rgb(0 164 173) 67%,
+            rgba(118, 74, 166, 1) 81%);
+
+     
 }
