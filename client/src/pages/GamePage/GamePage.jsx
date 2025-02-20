@@ -14,20 +14,21 @@ const GamePage = () => {
 
     const [game, setGame] = useState({});
     const [gamePrice, setGamePrice] = useState(null);
+    const [isHovered, setIsHovered] = useState(false);
 
-    let {id} = useParams();
+    let { id } = useParams();
 
     //get games data
     useEffect(() => {
         const getGamesData = async () => {
-            try{
-                const {data} = await axios.get(`http://localhost:3000/api/games/${id}`)
+            try {
+                const { data } = await axios.get(`http://localhost:3000/api/games/${id}`)
                 console.log(data);
                 setGame(data);
-            } catch (err){
+            } catch (err) {
                 console.log(err)
             }
-            
+
         };
         getGamesData()
     }, [id])
@@ -42,10 +43,11 @@ const GamePage = () => {
         } else {
             setGamePrice("€" + game.price);
         }
-    }, [game]); 
-    
+    }, [game]);
+
     //get cover image url
-    const coverImage = `http://localhost:3000/${game.image}`
+    let coverImage = game ? `http://localhost:3000/${game.image}` : "";
+    console.log(coverImage)
 
     //date formater
     const formatDate = (dateString) => {
@@ -58,92 +60,95 @@ const GamePage = () => {
     };
 
     //get color from cover image
-    average(coverImage, {format: "hex"}, { amount: 1 }).then(color => {
+    //fix barvy
+    average(coverImage, { format: "hex" , amount: 1 }).then(color => {
         console.log(color)
-      })
+    })
 
     return (
-    <div className="GamePage-body">
-        <NavBar></NavBar>
-        <div className="GamePage-MainContainer">
-            <span className='GamePage-Title'>{game.name}</span>
+        <div className="GamePage-body">
+            <NavBar></NavBar>
+            <div className="GamePage-MainContainer">
+                <span className='GamePage-Title'>{game.name}</span>
                 <div className="GamePage-Wrapper">
-            {/* fix obrazek(barvu) */}
-                <div className="GamePage-ImageContainer" style={{ 
-                    backgroundImage: coverImage ? `url(${coverImage})` : "none", 
-                    boxShadow: color ? `0px 10px 44px 0px ${color}` : "none" 
-                        }}>      
-                    </div>
+                    <img
+                        src={coverImage}
+                        alt="Cover Image"
+                        className="GamePage-CoverImage"
+                        style={isHovered ? { boxShadow: `0px 0px 70px 3px ${color})` } : {}}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                    />
                     <div className='GamePage-Container'>
                         <div>
-                        <p>Genres</p>
+                            <p>Genres</p>
                             <span>
                                 {game?.genres?.map(genre => genre.name).join(", ") || "No data"}
                             </span>
-                            </div>
-                            <div>
-                        <p>Platforms</p>
+                        </div>
+                        <div>
+                            <p>Platforms</p>
                             <span>
                                 {game?.platforms?.map(platform => platform.name).join(", ") || "No data"}
                             </span>
-                            </div>
-                            <div>
-                        <p>Perspectives</p>
+                        </div>
+                        <div>
+                            <p>Perspectives</p>
                             <span>
                                 {game?.perspectives?.map(perspective => perspective.name).join(", ") || "No data"}
                             </span>
-                            </div>
+                        </div>
                     </div>
 
                     <div className='GamePage-Container'>
                         <div>
-                        <p>Developers</p>
+                            <p>Developers</p>
                             <span>
                                 {game?.developers?.map(developer => developer.name).join(", ") || "No data"}
                             </span>
-                            </div>
-                            <div>
-                        <p>Publishers</p>
+                        </div>
+                        <div>
+                            <p>Publishers</p>
                             <span>
                                 {game?.publishers?.map(publisher => publisher.name).join(", ") || "No data"}
                             </span>
-                            </div>
-                            <div>
-                        <p>Game modes</p>
+                        </div>
+                        <div>
+                            <p>Game modes</p>
                             <span>
                                 {game?.gameModes?.map(gameMode => gameMode.name).join(", ") || "No data"}
                             </span>
-                            </div>
+                        </div>
                     </div>
                     <div className='GamePage-Container'>
-                    <div>
-                        <p>Engine</p>
+                        <div>
+                            <p>Engine</p>
                             <span>
                                 {game?.engines?.map(engine => engine.name).join(", ") || "No data"}
                             </span>
-                            </div>
-                            <div>
-                        <p>Release date</p>
+                        </div>
+                        <div>
+                            <p>Release date</p>
                             <span>
                                 {formatDate(game.releaseDate) || "No data"}
                             </span>
-                            </div>
-                            <div>
-                        <p>Price</p>
+                        </div>
+                        <div>
+                            <p>Price</p>
                             <span>
                                 {gamePrice || "No data"}
                             </span>
-                            </div>
+                        </div>
                     </div>
                 </div>
-            <div className="GamePage-Wrapper2">
-            <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videoId}`} 
-            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div className="GamePage-Wrapper2">
+                    <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videoId}`}
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default GamePage

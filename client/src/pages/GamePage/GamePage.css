@@ -20,20 +20,14 @@
     font-size: 40px;
 }
 
-.GamePage-ImageContainer {
+.GamePage-CoverImage {
     height: 390px;
     border-radius: 15px;
     width: 260px;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    background-size: cover;
 }
 
-.GamePage-ImageContainer:hover {
+.GamePage-CoverImage:hover {
     transform: scale(1.02);
-    border-radius: 20px;
-    
 }
 
 .GamePage-Container {

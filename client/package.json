@@ -14,6 +14,7 @@
     "@ant-design/icons": "^5.6.1",
     "axios": "^1.7.9",
     "color.js": "^1.2.0",
+    "fast-average-color": "^9.4.0",
     "multer": "^1.4.5-lts.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
