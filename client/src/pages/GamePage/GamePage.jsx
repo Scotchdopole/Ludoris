@@ -18,6 +18,7 @@ const GamePage = () => {
     const [gamePrice, setGamePrice] = useState(null);
     const [isHovered, setIsHovered] = useState(false);
     const [dominantColor, setDominantColor] = useState(null);
+    
 
     let { id } = useParams();
 
@@ -152,9 +153,9 @@ const GamePage = () => {
                     <lite-youtube videoid={videoId} posterquality="maxresdefault" params="controls=0&showinfo=0&rel=0"  ></lite-youtube>
                 </div>
             </div>
-            <div className="blob"></div>
+            <div className="blob" ></div>
         </div>
-        
+
     )
 }
 
