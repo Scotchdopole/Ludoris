@@ -5,6 +5,7 @@ import "../../style.css"
 import { AiOutlineSearch } from "react-icons/ai";
 import fuse from "fuse.js"
 import axios from 'axios';
+import { use } from 'react';
 
 
 export default function NavBar() {
@@ -41,6 +42,7 @@ export default function NavBar() {
 
 
 
+
   const searchRef = useRef(null);
 
   useEffect(() => {
@@ -62,10 +64,11 @@ export default function NavBar() {
 
   return (
     <>
-
+    <div className="NavBar-Body">
       <div className='NavBar-Main'>
+        <div className="NavBar-MainContainer">
         <div className="NavBar-SearchBox">
-          <div className="SearchBoX-Input">
+          <div className="NavBar-SearchBoX-Input">
             <AiOutlineSearch className='NavBar-SearchIcon' />
             <input ref={searchRef} value={query} onChange={(e) => setQuery(e.target.value)} className='NavBar-SearchBar' type="text" placeholder='Search' />
             <div className="NavBar-SearchBar-Shortcut-cotainer">
@@ -74,13 +77,6 @@ export default function NavBar() {
               <div className="NavBar-SearchBar-Shortcut">K</div>
             </div>
           </div>
-          <div className="NavBar-SearchResults">
-            <ul>
-              {results.map((game) => (
-                <li key={game.id}>{game.name}</li>
-              ))}
-            </ul>
-          </div>
         </div>
         <div className="NavBar-Column">
         </div>
@@ -88,6 +84,16 @@ export default function NavBar() {
           <button className='NavBar-Button'>EXPLORE</button>
           <button className='NavBar-Button'>ABOUT</button>
         </div>
+      </div>
+      <div className="NavBar-SearchResultContainer">
+      <ul>
+              {results.map((game) => (
+                <li key={game.id}>{game.name}</li>
+              ))}
+            </ul>
+      </div>
+      </div>
+      
       </div>
     </>
   )

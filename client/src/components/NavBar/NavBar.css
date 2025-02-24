@@ -2,50 +2,56 @@
     transition: all 300ms ease-in-out;
 }
 
-.NavBar-Main {
+.NavBar-Main{
     width: 100%;
     max-width: 1000px;
-    height: 60px;
+    height: auto;
     position: fixed;
     z-index: 999;
     top: 17px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    flex-direction: column;
+}
+
+.NavBar-MainContainer {
+    
     background: var(--secondaryBackground);
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.322);
     backdrop-filter: blur(10.9px);
     -webkit-backdrop-filter: blur(10.9px);
-    left: 50%;
-    transform: translate(-50%, 0);
+    height: 65px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     outline: 0px solid #4f339671;
 }
 
-.NavBar-Main:hover {
+.NavBar-MainContainer:hover {
     height: 65px;
     width: 100%;
     background: #33265571;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.199);
-    top: 30px;
+    
     border-radius: 30px;
     outline: 1px solid #4f339671;
     outline-offset: 10px;
 }
 
+.NavBar-Main:hover {
+    top: 25px;
+}
+
 .NavBar-SearchBox {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-top: 10px;
     padding-left: 20px;
     flex-direction: column;
 }
 
-.NavBar-SearchBar-Input{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
+
 
 .NavBar-SearchBar {
     background-color: #00000031;
@@ -61,10 +67,17 @@
 .NavBar-SearchBar:focus {
     border: none;
     outline: none;
+    
+}
+
+.NavBar-SearchBoX-Input{
+    display: flex;
+    flex-direction: row;
 }
 
 .NavBar-SearchIcon {
     font-size: 20px;
+    padding-top: 10px;
 }
 
 .NavBar-Buttons {
@@ -107,12 +120,34 @@
     gap: 20px;
 }
 
+.NavBar-Body {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.NavBar-SearchBar :placeholder-shown + .NavBar-SearchResultContainer{
+    display: none;
+    background-color: red;
+    height: 200px;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 10px;
+}
+
+
 @media (max-width:800px) {
 
-    .NavBar-Main {
+    .NavBar-MainContainer {
         flex-direction: column;
         height: 100px;
         padding-top: 20px;
+        align-items: center;
+    }
+    .NavBar-MainContainer:hover{
+        height: auto;
     }
 
     .NavBar-SearchBar-Shortcut-cotainer {
