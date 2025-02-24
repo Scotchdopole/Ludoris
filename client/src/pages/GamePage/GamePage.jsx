@@ -43,7 +43,7 @@ const GamePage = () => {
     //price converter
     useEffect(() => {
         if (game.price == 0) {
-            setGamePrice("free");
+            setGamePrice("Free");
         } else {
             setGamePrice("€" + game.price);
         }

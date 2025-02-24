@@ -5,7 +5,8 @@ import "../../style.css"
 import { AiOutlineSearch } from "react-icons/ai";
 import fuse from "fuse.js"
 import axios from 'axios';
-import { use } from 'react';
+import { Link } from 'react-router-dom';
+
 
 
 export default function NavBar() {
@@ -63,38 +64,38 @@ export default function NavBar() {
 
 
   return (
-    <>
     <div className="NavBar-Body">
       <div className='NavBar-Main'>
         <div className="NavBar-MainContainer">
-        <div className="NavBar-SearchBox">
-          <div className="NavBar-SearchBoX-Input">
-            <AiOutlineSearch className='NavBar-SearchIcon' />
-            <input ref={searchRef} value={query} onChange={(e) => setQuery(e.target.value)} className='NavBar-SearchBar' type="text" placeholder='Search' />
-            <div className="NavBar-SearchBar-Shortcut-cotainer">
-              <div className="NavBar-SearchBar-Shortcut">CTRL</div>
-              <span>+</span>
-              <div className="NavBar-SearchBar-Shortcut">K</div>
+          <div className="NavBar-SearchBox">
+            <div className="NavBar-SearchBoX-Input">
+              <AiOutlineSearch className='NavBar-SearchIcon' />
+              <input ref={searchRef} value={query} onChange={(e) => setQuery(e.target.value)} className='NavBar-SearchBar' type="text" placeholder='Search' />
+              <div className="NavBar-SearchBar-Shortcut-cotainer">
+                <div className="NavBar-SearchBar-Shortcut">CTRL</div>
+                <span>+</span>
+                <div className="NavBar-SearchBar-Shortcut">K</div>
+              </div>
             </div>
           </div>
+          <div className="NavBar-Column">
+          </div>
+          <div className="NavBar-Buttons">
+            <button className='NavBar-Button'>EXPLORE</button>
+            <button className='NavBar-Button'>ABOUT</button>
+          </div>
         </div>
-        <div className="NavBar-Column">
+        <div className="NavBar-SearchResultContainer">
+          <ul>
+            {results.map((game) => (
+              <li key={game.id}>
+                <Link to={`/game/${game.id}`}>{game.name}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="NavBar-Buttons">
-          <button className='NavBar-Button'>EXPLORE</button>
-          <button className='NavBar-Button'>ABOUT</button>
-        </div>
       </div>
-      <div className="NavBar-SearchResultContainer">
-      <ul>
-              {results.map((game) => (
-                <li key={game.id}>{game.name}</li>
-              ))}
-            </ul>
-      </div>
-      </div>
-      
-      </div>
-    </>
+
+    </div>
   )
 }
