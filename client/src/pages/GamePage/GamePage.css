@@ -108,8 +108,8 @@ lite-youtube {
 .blob {
     margin-left: auto;
     margin-right: auto;
-    margin-top: -600px;
-    opacity: 0.5;
+    margin-top: -800px;
+    opacity: 0.3;
     width: 600px;
     aspect-ratio: 1/1;
     animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
