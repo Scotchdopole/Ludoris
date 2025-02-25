@@ -33,7 +33,6 @@
     width: 100%;
     background: #33265571;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.199);
-    
     border-radius: 30px;
     outline: 1px solid #4f339671;
     outline-offset: 10px;
@@ -130,11 +129,17 @@
 
 .NavBar-SearchResultContainer{
     display: none;
-    background-color: var(--secondaryBackground);
+    background-color: #1e1a29;
     height: 200px;
     width: 100%;
     max-width: 350px;
     border-radius: 0px 0px 10px 10px;
+    font-size: 20px;
+    
+}
+
+a {
+    color: white !important;
     
 }
 

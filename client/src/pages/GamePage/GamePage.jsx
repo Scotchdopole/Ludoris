@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import "../../style.css";
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import "./GamePage.css"
@@ -79,14 +80,15 @@ const GamePage = () => {
             <div className="GamePage-MainContainer">
                 <span className='GamePage-Title'>{game.name}</span>
                 <div className="GamePage-Wrapper">
-                    <img
-                        src={coverImage}
-                        alt="Cover Image"
+                    <div
                         className="GamePage-CoverImage"
-                        style={isHovered ? { boxShadow: `0px 0px 70px 3px ${dominantColor}` } : {}}
+                        style={{
+                            backgroundImage: `url(${coverImage})`,
+                            ...(isHovered ? { boxShadow: `0px 0px 70px 3px ${dominantColor}` } : {})
+                        }}
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
-                    />
+                    ></div>
                     <div className='GamePage-Container'>
                         <div>
                             <p>Genres</p>
@@ -151,6 +153,7 @@ const GamePage = () => {
                 </div>
                 <div className="GamePage-Wrapper2">
                     <lite-youtube videoid={videoId} posterquality="maxresdefault" params="controls=1&showinfo=0&rel=0"  ></lite-youtube>
+                    <p className='GamePage-GameDesc'>{game.desc}</p>
                 </div>
             </div>
             <div className="blob" ></div>

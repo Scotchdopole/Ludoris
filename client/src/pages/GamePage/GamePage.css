@@ -1,11 +1,15 @@
-.GamePage-body {
+body, html{
     background-color: var(--primaryBackgorund);
+}
+
+.GamePage-body {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 0;
+    background-color: var(--primaryBackgorund);
 }
 
 .GamePage-MainContainer {
@@ -26,6 +30,8 @@
     height: 390px;
     border-radius: 15px;
     width: 260px;
+    background-position: center;
+    background-size: cover;
 }
 
 .GamePage-CoverImage:hover {
@@ -73,13 +79,25 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .GamePage-Wrapper2 {
     margin-top: 40px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    background-color: var(--secondaryBackground);
+    border-radius: 15px;
+    gap: 30px;
+    align-items: center;
+    height: min-content;
+    height: 333px;
+    
+}
+
+.GamePage-Wrapper2:hover{
+    transform: scale(1.02);
+    background: var(--secondaryBackgroundHover);
 }
 
 
@@ -88,8 +106,17 @@ lite-youtube {
     border-radius: 10px;
     overflow: hidden;
     z-index: 1;
-    height: 360px;
-    width: 640px;
+    height: 333px;
+    width: 592px;
+    padding: 0;
+    margin: 0;
+}
+
+.GamePage-GameDesc {
+    width: 600px;
+    height: 300px;
+    font-size: 20px;
+    
 }
 
 
@@ -106,21 +133,19 @@ lite-youtube {
 }
 
 .blob {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: -800px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     opacity: 0.3;
-    width: 600px;
-    aspect-ratio: 1/1;
+    width: 1000px;
+    height: 500px;
     animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
     filter: brightness(0.5);
-    filter: blur(40px);
+    filter: blur(100px);
     z-index: -1;
     background: linear-gradient(47deg,
             rgba(255, 88, 139, 1) 21%,
             rgb(0 164 173) 67%,
             rgba(118, 74, 166, 1) 81%);
-
-     
 }
-  

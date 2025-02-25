@@ -1,7 +1,9 @@
 *{
     font-family: sfpro-r-bold;
     transition: 300ms all ease-in-out;
+    color: var(--primaryFont);
 }
+
 
 :root{
   --primaryBackgorund: #0e0d11;

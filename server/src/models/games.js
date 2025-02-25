@@ -32,12 +32,12 @@ module.exports = (sequelize, DataTypes) => {
         ytbTrailerLink: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+
+        desc: {
+            type: DataTypes.TEXT,
+            allowNull: true
         }
-
-
-
-
-
 
     })
 
