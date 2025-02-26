@@ -29,8 +29,11 @@ export default function NavBar() {
 
 
   const Fuse = new fuse(games, {
-    keys: ["name"],
-    threshold: 0.3,
+    keys: ["name", "desc", "developers", "publishers", "engines", "genres"],
+    threshold: 0.6,
+    isCaseSensitive : false,
+    ignoreDiacritics: true,
+
   });
 
   useEffect(() => {
@@ -53,20 +56,18 @@ console.log(results?.[0]?.id)
       if (event.ctrlKey && event.key === "k") {
         event.preventDefault();
         searchRef.current?.focus();
+        searchRef.current?.select();
       }
-
-        if (results.length > 0) {
-          navigate(`/game/${results?.[0]?.id}`);
-        }
-      
+  
+      if (event.key === "Enter" && results.length > 0) {
+        navigate(`/game/${results[0].id}`);
+      }
     };
 
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [results, navigate]);
 
 
 

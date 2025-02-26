@@ -125,11 +125,73 @@ lite-youtube {
         padding-left: 20px;
         padding-right: 20px;
 
+
     }
 
     .GamePage-Container {
-        width: 350px;
+        width: 300px;
     }
+
+    .GamePage-Wrapper{
+        gap: 20px;
+    }
+}
+
+
+@media only screen and (max-width: 1300px) {
+   
+    .GamePage-Container {
+        width: 500px;
+    }
+
+    
+}
+
+@media only screen and (max-width: 1130px) {
+    
+    .GamePage-MainContainer {
+        padding-top: 50px;
+    }
+
+    .GamePage-Wrapper {
+        justify-content: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .GamePage-Wrapper > div{
+        margin-bottom: 20px;
+        
+    }
+
+    .GamePage-Container {
+        height: 300px;
+
+    }
+
+    .GamePage-Wrapper2{
+        flex-direction: column;
+        height: fit-content;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 50px;
+    }
+
+    .GamePage-GameDesc{
+        width: auto;
+        height: auto;
+    }
+
+    lite-youtube {
+        transform: scale(0.7);
+    }
+
+    .GamePage-CoverImage{
+        margin-top: 20px;
+    }
+    
 }
 
 .blob {
