@@ -25,9 +25,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: fit-content;
     user-select: none;
-    margin-top: 100px;
+    margin-top: 350px;
 }
 
 .Home-HeroText {
@@ -35,19 +36,17 @@
     font-family: Montserrat;
     font-weight: 600;
     letter-spacing: 30px;
-    text-align: center;
 }
 
 .Home-HeroText:hover {
     font-weight: 200;
     letter-spacing: 20px;
     font-size: 180px;
+    letter-spacing: 60px;
 }
 
 
 .Home-HeroSubText {
-    text-align: center;
-    margin-top: -240px;
     font-size: 30px;
 }
 

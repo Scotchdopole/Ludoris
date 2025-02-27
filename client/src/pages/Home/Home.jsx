@@ -12,12 +12,12 @@ export default function Home() {
     <NavBar></NavBar>
 
     <div className="Home-Hero">
-      <p className="Home-HeroText">
+      <spab className="Home-HeroText">
         LUDORIS
-      </p> 
-      <p className="Home-HeroSubText">
+      </spab> 
+      <span className="Home-HeroSubText">
         Every game. Every detail. Instantly.
-      </p>
+      </span>
     </div>
     
     </div>
