@@ -128,14 +128,14 @@
 }
 
 .NavBar-SearchResultContainer{
-    display: none;
+    /* display: none; */
     background-color: #1e1a29;
     height: 200px;
     width: 100%;
     max-width: 350px;
     border-radius: 0px 0px 10px 10px;
     font-size: 20px;
-    
+    opacity: 0;
 }
 
 a {
@@ -144,15 +144,18 @@ a {
 }
 
 .NavBar-Body:has(.NavBar-SearchBar:not(:focus)) .NavBar-SearchResultContainer {
-    display: none;
+    /* display: none; */
+    opacity: 0;
 }
 
 .NavBar-Body:has(.NavBar-SearchBar:focus) .NavBar-SearchResultContainer {
-    display: block;
+    /* display: block; */
+    opacity: 1;
 }
 
 .NavBar-Body:has(.NavBar-SearchResultContainer :hover) .NavBar-SearchResultContainer {
-    display: block;
+    /* display: block; */
+    opacity: 1;
 }
 
 .NavBar-Body:has(.NavBar-SearchBar:focus) .NavBar-MainContainer {

@@ -27,7 +27,7 @@ export default function NavBar() {
   }, [])
 
 
-
+  //fuse.js search
   const Fuse = new fuse(games, {
     keys: ["name", "desc", "developers", "publishers", "engines", "genres"],
     threshold: 0.6,
@@ -45,18 +45,21 @@ export default function NavBar() {
     }
   }, [query, games]);
 
-
-
-console.log(results?.[0]?.id)
-
   const searchRef = useRef(null);
 
+
+  //search bar keyboard controls
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.ctrlKey && event.key === "k") {
         event.preventDefault();
         searchRef.current?.focus();
         searchRef.current?.select();
+      }
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        searchRef.current?.blur();
       }
   
       if (event.key === "Enter" && results.length > 0) {
