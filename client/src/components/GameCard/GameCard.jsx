@@ -26,7 +26,7 @@ export default function GameCard({ game }) {
       .then(color => {
         console.log(color);
         setDominantColor(color);
-        
+
       })
       .catch(err => console.error('Error getting color:', err));
   }, [coverImage]);
@@ -34,18 +34,18 @@ export default function GameCard({ game }) {
 
 
   return (
-      <div className='GameCard-Body' style={{ ...(isHovered ? { background: `${dominantColor}` } : {})}}>        <div
-          className="GameCard-CoverImage"
-          style={{
-            backgroundImage: `url(${coverImage})`,
-            ...(isHovered ? { boxShadow: `0px 0px 70px 3px ${dominantColor}` } : {})
-          }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        ></div>
-        <span style={{fontSize: "20px", position: "relative", top:"10px"}}>{game.name}</span>
-       
-      </div>
-    
+    <div className='GameCard-Body' style={{ ...(isHovered ? { background: `${dominantColor}` } : {}) }}>        <div
+      className="GameCard-CoverImage"
+      style={{
+        backgroundImage: `url(${coverImage})`,
+        ...(isHovered ? { boxShadow: `0px 0px 70px 3px ${dominantColor}` } : {})
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    ></div>
+      <span style={{ fontSize: "20px", position: "relative", top: "10px" }}>{game.name}</span>
+
+    </div>
+
   )
 }
