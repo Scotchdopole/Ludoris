@@ -92,7 +92,7 @@ body, html{
     align-items: center;
     height: min-content;
     height: 333px;
-    
+    margin-bottom: 20px;
 }
 
 .GamePage-Wrapper2:hover{

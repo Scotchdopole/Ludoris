@@ -67,12 +67,13 @@ const GamePage = () => {
     //get color from cover image
     useEffect(() => {
         average(coverImage, { format: "hex", amount: 1, sample: 30 })
-            .then(color => {
+            .then(color => { 
                 console.log(color);
                 setDominantColor(color);
             })
             .catch(err => console.error('Error getting color:', err));
     }, [coverImage]);
+    document.documentElement.style.setProperty("--gameAccentColor", dominantColor);
 
     return (
         <div className="GamePage-body">

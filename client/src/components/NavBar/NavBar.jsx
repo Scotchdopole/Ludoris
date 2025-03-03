@@ -14,7 +14,7 @@ export default function NavBar() {
   const [games, setGames] = useState([]);
   const [results, setResults] = useState([]);
   const [query, setQuery] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function NavBar() {
   const Fuse = new fuse(games, {
     keys: ["name", "desc", "developers", "publishers", "engines", "genres"],
     threshold: 0.6,
-    isCaseSensitive : false,
+    isCaseSensitive: false,
     ignoreDiacritics: true,
 
   });
@@ -61,9 +61,10 @@ export default function NavBar() {
         event.preventDefault();
         searchRef.current?.blur();
       }
-  
+
       if (event.key === "Enter" && results.length > 0) {
         navigate(`/game/${results[0].id}`);
+        setQuery("")
       }
     };
 
@@ -92,7 +93,7 @@ export default function NavBar() {
           <div className="NavBar-Column">
           </div>
           <div className="NavBar-Buttons">
-            <button className='NavBar-Button'>EXPLORE</button>
+            <Link to="/games"><button className='NavBar-Button'>EXPLORE</button></Link>
             <button className='NavBar-Button'>ABOUT</button>
           </div>
         </div>

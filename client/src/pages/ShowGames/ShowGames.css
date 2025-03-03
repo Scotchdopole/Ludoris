@@ -34,11 +34,26 @@
 }
 
 .ShowGames-GameMainContainer{
+
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+    height: fit-content;
+    margin-top: 120px;
+}
+
+.ShowGames-GameCards{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 1000px;
-    height: fit-content;
+    row-gap: 50px;
+    column-gap: 30px;
+}
+
+
+.ShowGames-GameCard{
+    background-color: aqua;
 }

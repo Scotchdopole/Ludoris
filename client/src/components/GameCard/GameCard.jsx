@@ -22,17 +22,19 @@ export default function GameCard({ game }) {
   let coverImage = game ? `http://localhost:3000/${game.image}` : "";
 
   useEffect(() => {
-    average(coverImage, { format: "hex", amount: 1, sample: 30 })
+    average(coverImage, { format: "hex", amount: 1 })
       .then(color => {
         console.log(color);
         setDominantColor(color);
+        
       })
       .catch(err => console.error('Error getting color:', err));
   }, [coverImage]);
+  document.documentElement.style.setProperty("--gameAccentColor", dominantColor);
+
 
   return (
-      <div className='GameCard-Body'>
-        <div
+      <div className='GameCard-Body' style={{ ...(isHovered ? { background: `${dominantColor}` } : {})}}>        <div
           className="GameCard-CoverImage"
           style={{
             backgroundImage: `url(${coverImage})`,
@@ -41,8 +43,8 @@ export default function GameCard({ game }) {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         ></div>
-        <p>{game.name}</p>
-        <p>{gamePrice}</p>
+        <span style={{fontSize: "20px", position: "relative", top:"10px"}}>{game.name}</span>
+       
       </div>
     
   )

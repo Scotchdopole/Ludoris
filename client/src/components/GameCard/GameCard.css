@@ -6,14 +6,18 @@
     background-size: cover;
 }
 
-.GameCard-CoverImage:hover {
-    transform: scale(1.02);
-}
 
 .GameCard-Body{
     background-color: var(--secondaryBackground);
     border-radius: 15px;
-    padding-left: 5px;
-    padding-right: 5px;
     width: fit-content;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 10px;
+    height: 420px;
+}
+
+
+.GameCard-Body:hover{
+    background-color: var(--gameAccentColor);
 }

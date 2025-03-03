@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import "./ShowGames.css"
 import GameCard from '../../components/GameCard/GameCard';
 import NavBar from '../../components/NavBar/NavBar';
+import { Link } from 'react-router-dom';
 
 
 const ShowGames = () => {
@@ -27,10 +28,12 @@ const ShowGames = () => {
     <div className='ShowGames-Body'>
         <NavBar></NavBar>
         <div className="ShowGames-GameMainContainer">
-        <div className='ShowGames-GameCard'>
+        <div className='ShowGames-GameCards'>  
             {
                 game.map(game => (
-                    <GameCard key={game.id} game={game} />
+                    <Link to={`/game/${game.id}`}> 
+                        <GameCard key={game.id} game={game} className="ShowGames-GameCard" />
+                    </Link> 
                 ))
             }
         </div>
