@@ -20,7 +20,6 @@ export default function NavBar() {
   useEffect(() => {
     const getGamesData = async () => {
       const { data } = await axios.get('http://localhost:3000/api/games/')
-      console.log(data)
       setGames(data)
     }
     getGamesData()
@@ -95,6 +94,7 @@ export default function NavBar() {
           <div className="NavBar-Buttons">
             <Link to="/games"><button className='NavBar-Button'>EXPLORE</button></Link>
             <button className='NavBar-Button'>ABOUT</button>
+            <Link to="/"><button className='NavBar-Button'>HOME</button></Link>
           </div>
         </div>
         <div className="NavBar-SearchResultContainer">

@@ -107,10 +107,23 @@
     background-color: #00000000;
     border: none;
     border-radius: 30px;
+    outline: none;
 }
 
 .NavBar-Button:hover {
     background-color: #00000000;
+    border: none;
+    outline: none;
+}
+
+.NavBar-Button:active{
+    border: none;
+    outline: none;
+}
+
+.NavBar-Button:not(:hover){
+    outline: none;
+    border: none;
 }
 
 .NavBar-Buttons {

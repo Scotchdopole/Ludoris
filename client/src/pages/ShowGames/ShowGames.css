@@ -6,8 +6,8 @@
     left: 0;
     z-index: 0;
     background-color: var(--primaryBackgorund);
-    display: flex;
     justify-content: center;
+    gap: 5px;
 }
 
 
@@ -29,21 +29,21 @@
             rgba(118, 74, 166, 1) 81%);
 }
 
-.ShowGames-GameCard{
+.ShowGames-GameCard {
     width: auto;
 }
 
-.ShowGames-GameMainContainer{
+.ShowGames-GameMainContainer {
 
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 80%;
+    width: 70%;
     height: fit-content;
     margin-top: 120px;
 }
 
-.ShowGames-GameCards{
+.ShowGames-GameCards {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -54,6 +54,83 @@
 }
 
 
-.ShowGames-GameCard{
-    background-color: aqua;
+
+.ShowGames-FilterMainContainer {
+    margin-top: 120px;
+    width: 15%;
+    background-color: var(--secondaryBackground);
+    border-left: none;
+    padding-top: 20px;
+    border-radius: 0 20px 20px 0;
+    border: 3px solid #0000;
+    padding: 15px;
+}
+
+
+
+
+
+.ShowGames-FilterMainContainer:hover {
+    background-color: var(--secondaryBackgroundHover);
+}
+
+
+.ShowGames-MainContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+.custom-select .react-select__control {
+    background-color: #00000031;
+    height: 50px !important;
+    border-radius: 10px;
+    height: 30px;
+    border: none;
+    outline: none;
+    color: #ffffff !important;
+}
+
+.custom-select .react-select__control:focus {
+    background-color: var(--primaryBackgorund);
+    border: none;
+    outline: none;
+    color: #ffffff !important;
+}
+
+.custom-select .react-select__menu {
+    border-radius: 10px;
+    background-color: var(--primaryBackgorund);
+    color: #ffffff !important;
+}
+
+.custom-select .react-select__option--is-focused {
+    background-color: var(--secondaryBackground) !important;
+    color: #ffffff !important;
+}
+
+.custom-select .react-select__option--is-selected {
+    background-color: var(--secondaryBackgroundHover) !important;
+    color: #ffffff !important;
+}
+
+.custom-select .react-select__single-value {
+    color: white !important;
+}
+
+.custom-select .react-select__control {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.custom-select .react-select__indicator-separator {
+    display: none !important;
+}
+
+
+label {
+    margin-top: 20px;
 }

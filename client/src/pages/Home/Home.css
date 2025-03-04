@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
+
 }
 
 .Home-Hero {
@@ -52,15 +52,21 @@
 
 
 
-@media (max-width: 800px){
-    .Home-HeroText{
+@media (max-width: 800px) {
+    .Home-HeroText {
         font-size: 40px;
     }
-    .Home-HeroSubText{
+
+    .Home-HeroSubText {
         margin-top: -50px;
         font-size: 20px;
     }
-    .Home-Hero{
+
+    .Home-Hero {
         margin-top: 400px;
     }
 }
+
+
+
+

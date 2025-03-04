@@ -1,4 +1,5 @@
-body, html{
+body,
+html {
     background-color: var(--primaryBackgorund);
 }
 
@@ -21,7 +22,7 @@ body, html{
 }
 
 .GamePage-Title {
-    color: var(primaryFont);
+    color: var(--primaryFont);
     font-size: 40px;
     user-select: none;
 }
@@ -75,6 +76,10 @@ body, html{
 
 }
 
+
+
+
+
 .GamePage-Wrapper {
     display: flex;
     flex-direction: row;
@@ -95,7 +100,7 @@ body, html{
     margin-bottom: 20px;
 }
 
-.GamePage-Wrapper2:hover{
+.GamePage-Wrapper2:hover {
     transform: scale(1.02);
     background: var(--secondaryBackgroundHover);
 }
@@ -116,7 +121,7 @@ lite-youtube {
     width: 600px;
     height: 300px;
     font-size: 20px;
-    
+
 }
 
 
@@ -132,23 +137,23 @@ lite-youtube {
         width: 300px;
     }
 
-    .GamePage-Wrapper{
+    .GamePage-Wrapper {
         gap: 20px;
     }
 }
 
 
 @media only screen and (max-width: 1300px) {
-   
+
     .GamePage-Container {
         width: 500px;
     }
 
-    
+
 }
 
 @media only screen and (max-width: 1130px) {
-    
+
     .GamePage-MainContainer {
         padding-top: 50px;
     }
@@ -161,9 +166,9 @@ lite-youtube {
 
     }
 
-    .GamePage-Wrapper > div{
+    .GamePage-Wrapper>div {
         margin-bottom: 20px;
-        
+
     }
 
     .GamePage-Container {
@@ -171,7 +176,7 @@ lite-youtube {
 
     }
 
-    .GamePage-Wrapper2{
+    .GamePage-Wrapper2 {
         flex-direction: column;
         height: fit-content;
         padding-left: 20px;
@@ -179,7 +184,7 @@ lite-youtube {
         margin-bottom: 50px;
     }
 
-    .GamePage-GameDesc{
+    .GamePage-GameDesc {
         width: auto;
         height: auto;
     }
@@ -188,10 +193,10 @@ lite-youtube {
         transform: scale(0.7);
     }
 
-    .GamePage-CoverImage{
+    .GamePage-CoverImage {
         margin-top: 20px;
     }
-    
+
 }
 
 .blob {

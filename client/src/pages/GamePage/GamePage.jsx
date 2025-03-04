@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import "../../style.css";
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import "./GamePage.css"
 import NavBar from "../../components/NavBar/NavBar"
 import YouTubeVideoId from 'youtube-video-id';
@@ -28,7 +28,6 @@ const GamePage = () => {
         const getGamesData = async () => {
             try {
                 const { data } = await axios.get(`http://localhost:3000/api/games/${id}`)
-                console.log(data);
                 setGame(data);
             } catch (err) {
                 console.log(err)
@@ -52,7 +51,6 @@ const GamePage = () => {
 
     //get cover image url
     let coverImage = game ? `http://localhost:3000/${game.image}` : "";
-    console.log(coverImage)
 
     //date formater
     const formatDate = (dateString) => {
@@ -68,7 +66,6 @@ const GamePage = () => {
     useEffect(() => {
         average(coverImage, { format: "hex", amount: 1, sample: 30 })
             .then(color => { 
-                console.log(color);
                 setDominantColor(color);
             })
             .catch(err => console.error('Error getting color:', err));
@@ -79,7 +76,7 @@ const GamePage = () => {
         <div className="GamePage-body">
             <NavBar></NavBar>
             <div className="GamePage-MainContainer">
-                <span className='GamePage-Title'>{game.name}</span>
+                <span className='GamePage-Title tracking-in-expand'>{game.name}</span>
                 <div className="GamePage-Wrapper">
                     <div
                         className="GamePage-CoverImage"
@@ -115,7 +112,7 @@ const GamePage = () => {
                         <div>
                             <p>Developers</p>
                             <span>
-                                {game?.developers?.map(developer => developer.name).join(", ") || "No data"}
+                                <Link to={`/games/?developer=${game?.developers?.map(developer => developer.name)}`}>{game?.developers?.map(developer => developer.name).join(", ") || "No data"}</Link>
                             </span>
                         </div>
                         <div>
