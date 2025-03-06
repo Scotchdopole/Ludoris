@@ -76,9 +76,15 @@ html {
 
 }
 
+.GamePage-Container a {
+    color: var(--secondaryFont);
+    text-underline-offset: 10px;
+}
 
-
-
+.GamePage-Container a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
 
 .GamePage-Wrapper {
     display: flex;

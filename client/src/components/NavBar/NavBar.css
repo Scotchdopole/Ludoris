@@ -152,7 +152,7 @@
     opacity: 0;
 }
 
-a {
+.NavBar-Body a {
     color: white !important;
     
 }

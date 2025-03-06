@@ -64,11 +64,12 @@
     border-radius: 0 20px 20px 0;
     border: 3px solid #0000;
     padding: 15px;
+    height: fit-content;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    
 }
-
-
-
-
 
 .ShowGames-FilterMainContainer:hover {
     background-color: var(--secondaryBackgroundHover);

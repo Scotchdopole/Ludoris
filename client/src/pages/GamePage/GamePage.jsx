@@ -112,13 +112,15 @@ const GamePage = () => {
                         <div>
                             <p>Developers</p>
                             <span>
-                                <Link to={`/games/?developer=${game?.developers?.map(developer => developer.name)}`}>{game?.developers?.map(developer => developer.name).join(", ") || "No data"}</Link>
+                                <Link to={`/games/?developer=${game?.developers?.map(developer => developer.name)}`}>
+                                {game?.developers?.map(developer => developer.name).join(", ") || "No data"}</Link>
                             </span>
                         </div>
                         <div>
                             <p>Publishers</p>
                             <span>
-                                {game?.publishers?.map(publisher => publisher.name).join(", ") || "No data"}
+                            <Link to={`/games/?publisher=${game?.publishers?.map(publisher => publisher.name)}`}>
+                            {game?.publishers?.map(publisher => publisher.name).join(", ") || "No data"}</Link>
                             </span>
                         </div>
                         <div>
@@ -132,7 +134,8 @@ const GamePage = () => {
                         <div>
                             <p>Engine</p>
                             <span>
-                                {game?.engines?.map(engine => engine.name).join(", ") || "No data"}
+                            <Link to={`/games/?engine=${game?.engines?.map(engine => engine.name)}`}>
+                            {game?.engines?.map(engine => engine.name).join(", ") || "No data"}</Link>
                             </span>
                         </div>
                         <div>
