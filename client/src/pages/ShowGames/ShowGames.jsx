@@ -17,9 +17,10 @@ const ShowGames = () => {
         developers: [],
         publishers: [],
         engines: [],
-        platforms: []
-        // gameModes: [],
-        // perspectives: []
+        platforms: [],
+        gameModes: [],
+        genres: [],
+        perspectives: []
     });
 
 
@@ -42,6 +43,19 @@ const ShowGames = () => {
                         return [...new Set(array.flatMap((game) => game.platforms.map((platform) => platform.name)))];
                     }
 
+                    if (key === "gameModes") {
+                        return [...new Set(array.flatMap((game) => game.gameModes.map((gameMode) => gameMode.name)))];
+                    }
+
+                    if (key === "genres") {
+                        return [...new Set(array.flatMap((game) => game.genres.map((genre) => genre.name)))];
+                    }
+
+                    if (key === "perspectives") {
+                        return [...new Set(array.flatMap((game) => game.perspectives.map((perspective) => perspective.name)))];
+                    }
+
+
                     return [...new Set(array.flatMap((game) => game[key]))];
                 };
 
@@ -50,6 +64,9 @@ const ShowGames = () => {
                     publishers: getUniqueValues(data, "publishers"),
                     engines: getUniqueValues(data, "engines"),
                     platforms: getUniqueValues(data, "platforms"),
+                    gameModes: getUniqueValues(data, "gameModes"),
+                    genres: getUniqueValues(data, "genres"),
+                    perspectives: getUniqueValues(data, "perspectives"),
                 });
 
             } catch (error) {
@@ -67,6 +84,9 @@ const ShowGames = () => {
     const publisherFilter = searchParams.get("publisher") || "";
     const engineFilter = searchParams.get("engine") || "";
     const platformFilter = searchParams.get("platform") || "";
+    const gameModeFilter = searchParams.get("gameMode") || "";
+    const genreFilter = searchParams.get("genre") || "";
+    const perspectiveFilter = searchParams.get("perspective") || "";
 
 
 
@@ -84,6 +104,15 @@ const ShowGames = () => {
                 : true) &&
             (platformFilter
                 ? game.platforms.some((plat) => plat.name === platformFilter)
+                : true) &&
+            (gameModeFilter
+                ? game.gameModes.some((mode) => mode.name === gameModeFilter)
+                : true) &&
+            (genreFilter
+                ? game.genres.some((gen) => gen.name === genreFilter)
+                : true) &&
+            (perspectiveFilter
+                ? game.perspectives.some((per) => per.name === perspectiveFilter)
                 : true)
         )
     })
@@ -100,6 +129,7 @@ const ShowGames = () => {
         }
         setSearchParams(newParams);
     };
+
 
     //react select
     const developerOptions = filters.developers.map((dev) => ({
@@ -121,75 +151,132 @@ const ShowGames = () => {
         label: plat,
     }));
 
+    const gameModeOptions = filters.gameModes.map((mode) => ({
+        value: mode,
+        label: mode,
+    }));
+
+    const genreOptions = filters.genres.map((gen) => ({
+        value: gen,
+        label: gen,
+    }));
+    
+    const perspectiveOptions = filters.perspectives.map((per) => ({
+        value: per,
+        label: per,
+    }));
+
 
     return (
         <div className='ShowGames-Body'>
             <NavBar></NavBar>
             <div className='ShowGames-MainContainer'>
                 <div className="ShowGames-FilterMainContainer">
-                <div>
-                <label>Developer:</label>
-                <Select
-                    className="custom-select"
-                    classNamePrefix="react-select"
-                    options={developerOptions}
-                    onChange={(selectedOption) => updateFilter("developer", selectedOption ? selectedOption.value : "")}
-                    isClearable
-                    placeholder="Search developers..."
+                    <div>
+                        <label>Developer:</label>
+                        <Select
+                            className="custom-select"
+                            classNamePrefix="react-select"
+                            options={developerOptions}
+                            onChange={(selectedOption) => updateFilter("developer", selectedOption ? selectedOption.value : "")}
+                            value={developerOptions.find(option => option.value === searchParams.get("developer")) || null}
+                            isClearable
+                            placeholder="Any"
+                        />
+                    </div>
+                    <div>
+                        <label>Publisher:</label>
+                        <Select
+                            className="custom-select"
+                            classNamePrefix="react-select"
+                            options={publisherOptions}
+                            onChange={(selectedOption) => updateFilter("publisher", selectedOption ? selectedOption.value : "")}
+                            value={publisherOptions.find(option => option.value === searchParams.get("publisher")) || null}
+                            isClearable
+                            placeholder="Any"
+                        />
+                    </div>
+                    <div>
+                        <label>Engine:</label>
+                        <Select
+                            className="custom-select"
+                            classNamePrefix="react-select"
+                            options={engineOptions}
+                            onChange={(selectedOption) => updateFilter("engine", selectedOption ? selectedOption.value : "")}
+                            value={engineOptions.find(option => option.value === searchParams.get("engine")) || null}
+                            isClearable
+                            placeholder="Any"
+                        />
+                    </div>
+                    <div>
+                        <label>Platform:</label>
+                        <Select
+                            className="custom-select"
+                            classNamePrefix="react-select"
+                            options={platformOptions}
+                            onChange={(selectedOption) => updateFilter("platform", selectedOption ? selectedOption.value : "")}
+                            value={platformOptions.find(option => option.value === searchParams.get("platform")) || null}
+                            isClearable
+                            placeholder="Any"
+                        />
+                    </div>
+                    <div>
+                        <label>Game mode:</label>
+                        <Select
+                            className="custom-select"
+                            classNamePrefix="react-select"
+                            options={gameModeOptions}
+                            onChange={(selectedOption) => updateFilter("gameMode", selectedOption ? selectedOption.value : "")}
+                            value={gameModeOptions.find(option => option.value === searchParams.get("gameMode")) || null}
+                            isClearable
+                            placeholder="Any"
+                        />
+                    </div>
+                    <div>
+                        <label>Genres:</label>
+                        <Select
+                            className="custom-select"
+                            classNamePrefix="react-select"
+                            options={genreOptions}
+                            onChange={(selectedOption) => updateFilter("genre", selectedOption ? selectedOption.value : "")}
+                            value={genreOptions.find(option => option.value === searchParams.get("genre")) || null}
+                            isClearable
+                            placeholder="Any"
+                        />
+                    </div>
+                    <div>
+                        <label>Perspectives:</label>
+                        <Select
+                            className="custom-select"
+                            classNamePrefix="react-select"
+                            options={perspectiveOptions}
+                            onChange={(selectedOption) => updateFilter("perspective", selectedOption ? selectedOption.value : "")}
+                            value={perspectiveOptions.find(option => option.value === searchParams.get("perspective")) || null}
+                            isClearable
+                            placeholder="Any"
+                        />
+                    </div>
+                    <button onClick={() => setSearchParams(new URLSearchParams())}>
+                        Clear Filters
+                    </button>
+                </div>
+                <div className="ShowGames-GameMainContainer">
+                    <div className='ShowGames-GameCards'>
+                        {
+                            filteredGames.map(game => (
+                                <Link to={`/game/${game.id}`} key={game.id}>
+                                    <GameCard key={game.id} game={game} className="ShowGames-GameCard" />
+                                </Link>
+                            ))
+                        }
+                    </div>
 
-                />
                 </div>
-                <div>
-                <label>Publisher:</label>
-                <Select
-                    className="custom-select"
-                    classNamePrefix="react-select"
-                    options={publisherOptions}
-                    onChange={(selectedOption) => updateFilter("publisher", selectedOption ? selectedOption.value : "")}
-                    isClearable
-                    placeholder="Search publisher..."
-                />
-                </div>
-                <div>
-                    <label>Engine:</label>
-                    <Select
-                        className="custom-select"
-                        classNamePrefix="react-select"
-                        options={engineOptions}
-                        onChange={(selectedOption) => updateFilter("engine", selectedOption ? selectedOption.value : "")}
-                        isClearable
-                        placeholder="Search engine..."
-                    />
-                </div>
-                <div>
-                    <label>Engine:</label>
-                    <Select
-                        className="custom-select"
-                        classNamePrefix="react-select"
-                        options={platformOptions}
-                        onChange={(selectedOption) => updateFilter("platform", selectedOption ? selectedOption.value : "")}
-                        isClearable
-                        placeholder="Search platforms..."
-                    />
-                </div>
+                <div style={{ width: "15%" }}></div>
+
+
+                <div className="blob"></div>
             </div>
-            <div className="ShowGames-GameMainContainer">
-                <div className='ShowGames-GameCards'>
-                    {
-                        filteredGames.map(game => (
-                            <Link to={`/game/${game.id}`} key={game.id}>
-                                <GameCard key={game.id} game={game} className="ShowGames-GameCard" />
-                            </Link>
-                        ))
-                    }
-                </div>
-
-            </div>
-            <div style={{ width: "15%" }}></div>
-
-
-            <div className="blob"></div>
-        </div>
         </div >
     )
 }

@@ -65,7 +65,7 @@ const GamePage = () => {
     //get color from cover image
     useEffect(() => {
         average(coverImage, { format: "hex", amount: 1, sample: 30 })
-            .then(color => { 
+            .then(color => {
                 setDominantColor(color);
             })
             .catch(err => console.error('Error getting color:', err));
@@ -89,21 +89,48 @@ const GamePage = () => {
                     ></div>
                     <div className='GamePage-Container'>
                         <div>
-                            <p>Genres</p>
-                            <span>
-                                {game?.genres?.map(genre => genre.name).join(", ") || "No data"}
-                            </span>
+                        <p>Genres</p>
+                        <span>
+                            {game?.genres?.length > 0 ? (
+                                game.genres.map((genre, index) => (
+                                    <React.Fragment key={genre.name}>
+                                        <Link to={`/games/?genre=${genre.name}`}>{genre.name}</Link>
+                                        {index < game.genres.length - 1 && ", "}
+                                    </React.Fragment>
+                                ))
+                            ) : (
+                                "No data"
+                            )}
+                        </span>
                         </div>
                         <div>
                             <p>Platforms</p>
                             <span>
-                                {game?.platforms?.map(platform => platform.name).join(", ") || "No data"}
+                                {game?.platforms?.length > 0 ? (
+                                    game.platforms.map((platform, index) => (
+                                        <React.Fragment key={platform.name}>
+                                            <Link to={`/games/?platform=${platform.name}`}>{platform.name}</Link>
+                                            {index < game.platforms.length - 1 && ", "}
+                                        </React.Fragment>
+                                    ))
+                                ) : (
+                                    "No data"
+                                )}
                             </span>
                         </div>
                         <div>
                             <p>Perspectives</p>
                             <span>
-                                {game?.perspectives?.map(perspective => perspective.name).join(", ") || "No data"}
+                                {game?.perspectives?.length > 0 ? (
+                                    game.perspectives.map((perspective, index) => (
+                                        <React.Fragment key={perspective.name}>
+                                            <Link to={`/games/?perspective=${perspective.name}`}>{perspective.name}</Link>
+                                            {index < game.perspectives.length - 1 && ", "}
+                                        </React.Fragment>
+                                    ))
+                                ) : (
+                                    "No data"
+                                )}
                             </span>
                         </div>
                     </div>
@@ -112,21 +139,46 @@ const GamePage = () => {
                         <div>
                             <p>Developers</p>
                             <span>
-                                <Link to={`/games/?developer=${game?.developers?.map(developer => developer.name)}`}>
-                                {game?.developers?.map(developer => developer.name).join(", ") || "No data"}</Link>
+                                {game?.developers?.length > 0 ? (
+                                    game.developers.map((developer, index) => (
+                                        <React.Fragment key={developer.name}>
+                                            <Link to={`/games/?developer=${developer.name}`}>{developer.name}</Link>
+                                            {index < game.developers.length - 1 && ", "}
+                                        </React.Fragment>
+                                    ))
+                                ) : (
+                                    "No data"
+                                )}
                             </span>
                         </div>
                         <div>
                             <p>Publishers</p>
                             <span>
-                            <Link to={`/games/?publisher=${game?.publishers?.map(publisher => publisher.name)}`}>
-                            {game?.publishers?.map(publisher => publisher.name).join(", ") || "No data"}</Link>
+                                {game?.publishers?.length > 0 ? (
+                                    game.publishers.map((publisher, index) => (
+                                        <React.Fragment key={publisher.name}>
+                                            <Link to={`/games/?publisher=${publisher.name}`}>{publisher.name}</Link>
+                                            {index < game.publishers.length - 1 && ", "}
+                                        </React.Fragment>
+                                    ))
+                                ) : (
+                                    "No data"
+                                )}
                             </span>
                         </div>
                         <div>
                             <p>Game modes</p>
                             <span>
-                                {game?.gameModes?.map(gameMode => gameMode.name).join(", ") || "No data"}
+                                {game?.gameModes?.length > 0 ? (
+                                    game.gameModes.map((gameMode, index) => (
+                                        <React.Fragment key={gameMode.name}>
+                                            <Link to={`/games/?gameMode=${gameMode.name}`}>{gameMode.name}</Link>
+                                            {index < game.gameModes.length - 1 && ", "}
+                                        </React.Fragment>
+                                    ))
+                                ) : (
+                                    "No data"
+                                )}
                             </span>
                         </div>
                     </div>
@@ -134,8 +186,8 @@ const GamePage = () => {
                         <div>
                             <p>Engine</p>
                             <span>
-                            <Link to={`/games/?engine=${game?.engines?.map(engine => engine.name)}`}>
-                            {game?.engines?.map(engine => engine.name).join(", ") || "No data"}</Link>
+                                <Link to={`/games/?engine=${game?.engines?.map(engine => engine.name)}`}>
+                                    {game?.engines?.map(engine => engine.name).join(", ") || "No data"}</Link>
                             </span>
                         </div>
                         <div>
