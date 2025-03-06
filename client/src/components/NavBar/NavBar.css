@@ -31,7 +31,7 @@
 .NavBar-MainContainer:hover {
     height: 65px;
     width: 100%;
-    background: #33265571;
+    background: var(--secondaryBackgroundHover);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.199);
     border-radius: 30px;
     outline: 1px solid #4f339671;

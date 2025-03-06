@@ -7,29 +7,46 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
-    background-image: url("../../assets/images/blob.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    margin: 0;
-    background-position-x: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: row;
+    background-color: black;
     justify-content: center;
-
+    align-items: center;
 }
 
 .Home-Hero {
+    background-image: url("../../assets/images/heroBackgroundPixel.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position-x: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    backdrop-filter: blur(100px);
     align-items: center;
-    height: fit-content;
     user-select: none;
-    margin-top: 350px;
+    width: 95%;
+    height: 80%;
+    border-radius: 40px;
+    margin-top: 30px;
 }
+
+
+.Home-Hero:has(.Home-HeroText:hover) {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    margin-top: 0px;
+    background-image: url("../../assets/images/heroBackground.png");
+}
+
+
+
+
 
 .Home-HeroText {
     font-size: 180px;
@@ -39,33 +56,20 @@
 }
 
 .Home-HeroText:hover {
-    font-weight: 200;
+    font-weight: 900;
     letter-spacing: 20px;
-    font-size: 180px;
-    letter-spacing: 60px;
+    font-size: 200px;
+    letter-spacing: 30px;
 }
 
 
 .Home-HeroSubText {
     font-size: 30px;
+    position: relative;
+    top: -30px;
 }
 
 
-
-@media (max-width: 800px) {
-    .Home-HeroText {
-        font-size: 40px;
-    }
-
-    .Home-HeroSubText {
-        margin-top: -50px;
-        font-size: 20px;
-    }
-
-    .Home-Hero {
-        margin-top: 400px;
-    }
-}
 
 
 
