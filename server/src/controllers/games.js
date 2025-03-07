@@ -28,10 +28,11 @@ const createGame = async (req, res) => {
             gameModesIds,
             price,
             ytbTrailerLink,
-            perspectiveIds
+            perspectiveIds,
+            desc
         } = req.body;
 
-        let imagePath = req.file ? req.file.path : null;
+        let imagePath = req.file ? req.file.path.replace(/\\/g, '/') : null;
 
 
         const newGame = await Game.create({
@@ -39,6 +40,7 @@ const createGame = async (req, res) => {
             releaseDate,
             price,
             ytbTrailerLink,
+            desc,
             image: imagePath
         });
 
@@ -202,7 +204,8 @@ const updateGame = async (req, res) => {
             gameModesIds,
             price,
             ytbTrailerLink,
-            perspectiveIds
+            perspectiveIds,
+            desc
         } = req.body;
 
         
@@ -219,6 +222,7 @@ const updateGame = async (req, res) => {
             releaseDate,
             price,
             ytbTrailerLink,
+            desc
         });
 
         if (developers && developers.length > 0) {
