@@ -10,11 +10,12 @@
 .GameCard-Body{
     background-color: var(--secondaryBackground);
     border-radius: 15px;
-    width: fit-content;
+    width: 260px;
     justify-content: center;
     text-align: center;
     padding-bottom: 10px;
-    height: 420px;
+    height: fit-content;
+    text-wrap:wrap;
 }
 
 

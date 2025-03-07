@@ -1,6 +1,7 @@
 * {
   font-family: sfpro-r-bold;
   transition: 300ms all ease-in-out;
+  -moz-transition: 300ms all ease-in-out;
   color: var(--primaryFont);
 }
 

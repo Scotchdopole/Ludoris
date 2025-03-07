@@ -119,10 +119,11 @@ html {
     background-color: var(--secondaryBackground);
     border-radius: 15px;
     gap: 30px;
-    align-items: center;
+    align-items: start;
     height: min-content;
     height: 333px;
     margin-bottom: 20px;
+    text-wrap: wrap;
 }
 
 .GamePage-Wrapper2:hover {
@@ -143,9 +144,8 @@ lite-youtube {
 }
 
 .GamePage-GameDesc {
-    width: 600px;
-    height: 300px;
     font-size: 20px;
+    max-width: 900px;
 
 }
 
