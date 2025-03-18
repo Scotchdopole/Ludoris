@@ -270,11 +270,7 @@ const ShowGames = () => {
                             ))
                         }
                     </div>
-
                 </div>
-                <div style={{ width: "15%" }}></div>
-
-
                 <div className="blob"></div>
             </div>
         </div >

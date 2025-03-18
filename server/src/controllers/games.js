@@ -13,8 +13,6 @@ const GameModes = gameDb.gameModes
 
 
 
-
-
 const createGame = async (req, res) => {
     try {
         const {
@@ -282,11 +280,6 @@ const deleteGame = async (req, res) => {
 
 
 
-
-
-
-
-
 const storage = multer.diskStorage({
 
     destination: (req, file, cb) => {
@@ -313,10 +306,6 @@ const upload = multer({
         cb("unsupported file format")
     }
 }).single("image")
-
-
-
-
 
 
 module.exports = {

@@ -120,10 +120,10 @@ html {
     border-radius: 15px;
     gap: 30px;
     align-items: start;
-    height: min-content;
-    height: 333px;
+    height: fit-content;
     margin-bottom: 20px;
     text-wrap: wrap;
+    padding-right: 40px;
 }
 
 .GamePage-Wrapper2:hover {
@@ -131,6 +131,12 @@ html {
     background: var(--secondaryBackgroundHover);
 }
 
+.GamePage-Wrapper2 > div > p {
+    font-size: 20px;
+    line-height: 25px;
+    margin-left: 10px;
+    font-family: sfpro-d-bold;
+}
 
 
 lite-youtube {
@@ -141,12 +147,12 @@ lite-youtube {
     width: 592px;
     padding: 0;
     margin: 0;
+    aspect-ratio: 16/9;
 }
 
 .GamePage-GameDesc {
     font-size: 20px;
     max-width: 900px;
-
 }
 
 
@@ -222,22 +228,4 @@ lite-youtube {
         margin-top: 20px;
     }
 
-}
-
-.blob {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.3;
-    width: 1000px;
-    height: 500px;
-    animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
-    filter: brightness(0.5);
-    filter: blur(100px);
-    z-index: -1;
-    background: linear-gradient(47deg,
-            rgba(255, 88, 139, 1) 21%,
-            rgb(0 164 173) 67%,
-            rgba(118, 74, 166, 1) 81%);
 }

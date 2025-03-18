@@ -205,8 +205,12 @@ const GamePage = () => {
                     </div>
                 </div>
                 <div className="GamePage-Wrapper2">
+                    <div>
                     <lite-youtube videoid={videoId} posterquality="maxresdefault" params="controls=1&showinfo=0&rel=0"  ></lite-youtube>
-                    <p className='GamePage-GameDesc'>{game.desc}</p>
+                    </div>
+                    <div>
+                    <p className='GamePage-GameDesc' >{game.desc}</p>
+                    </div>
                 </div>
             </div>
             <div className="blob" ></div>

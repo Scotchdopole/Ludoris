@@ -1,0 +1,82 @@
+.LoginPage-Body {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background-color: var(--primaryBackgorund);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 5px;
+}
+
+.LoginPage-Form-MainContainer {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.LoginPage-Form-MainContainer form {
+    background-color: var(--secondaryBackground);
+    height: fit-content;
+    padding-bottom: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    padding-top: 30px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.LoginPage-Form-MainContainer form:hover {
+    background-color: var(--secondaryBackgroundHover);
+}
+
+.LoginPage-Form-MainContainer form>label {
+    font-size: 30px;
+    user-select: none;
+}
+
+.LoginPage-Form-MainContainer form>input {
+    background-color: var(--primaryBackgorund);
+    border: none;
+    border-radius: none;
+    margin-top: 20px;
+    height: 40px;
+    padding-left: 20px;
+    border-radius: 15px;
+    width: 70%;
+    font-size: 20px;
+}
+
+.LoginPage-Form-MainContainer form>span {
+    margin-top: 10px;
+}
+
+.LoginPage-Form-MainContainer form>input:focus {
+    outline: none;
+}
+
+.LoginPage-SubmitButton {
+    border-radius: 0 0 20px 20px;
+    width: 70%;
+    background-color: var(--secondaryBackground);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    border: none;
+    transition: all 300ms ease-in-out;
+}
+
+.LoginPage-SubmitButton:hover {
+    border: none;
+    background-color: var(--secondaryBackgroundHover);
+    transition: all 300ms ease-in-out;
+}
+
+.LoginPage-SubmitButton:focus {
+    border: none;
+    outline: none;
+}

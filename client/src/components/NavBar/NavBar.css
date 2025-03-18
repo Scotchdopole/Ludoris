@@ -166,13 +166,13 @@
 .NavBar-Body:has(.NavBar-SearchBar:focus) .NavBar-SearchResultContainer {
     /* display: block; */
     opacity: 1;
-    height: 200px;
+    height: fit-content;
 }
 
 .NavBar-Body:has(.NavBar-SearchResultContainer :hover) .NavBar-SearchResultContainer {
     /* display: block; */
     opacity: 1;
-    height: 200px;
+    height: fit-content;
 }
 
 .NavBar-Body:has(.NavBar-SearchBar:focus) .NavBar-MainContainer {
