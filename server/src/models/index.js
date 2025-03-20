@@ -22,17 +22,22 @@ sequelize.authenticate()
 
 const db = {}
 
+
+
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.game = require("./games.js")(sequelize, DataTypes)
-db.genre = require("./genres.js")(sequelize, DataTypes)
-db.platform = require("./platforms.js")(sequelize, DataTypes)
-db.developer = require("./developer.js")(sequelize, DataTypes)
-db.publisher = require("./publisher.js")(sequelize, DataTypes)
-db.engine = require("./engine.js")(sequelize, DataTypes)
-db.perspective = require("./perspective.js")(sequelize, DataTypes)
-db.gameModes = require("./gameModes.js")(sequelize, DataTypes)
+
+db.game = require("./games.js")(sequelize, DataTypes);
+db.genre = require("./genres.js")(sequelize, DataTypes);
+db.platform = require("./platforms.js")(sequelize, DataTypes);
+db.developer = require("./developer.js")(sequelize, DataTypes);
+db.publisher = require("./publisher.js")(sequelize, DataTypes);
+db.engine = require("./engine.js")(sequelize, DataTypes);
+db.perspective = require("./perspective.js")(sequelize, DataTypes);
+db.gameModes = require("./gameModes.js")(sequelize, DataTypes);
+db.user = require('./user')(sequelize, DataTypes);
+db.userGame = require('./userGame')(sequelize, DataTypes);
 
 
 //associace
@@ -57,8 +62,17 @@ db.perspective.belongsToMany(db.game, { through: "gamePerspective" })
 db.game.belongsToMany(db.gameModes, { through: "gameGameModes" })
 db.gameModes.belongsToMany(db.game, { through: "gameGameModes" })
 
+db.user.belongsToMany(db.game, { 
+    through: db.userGame,
+    foreignKey: 'userId',
+    as: 'games'
+});
 
-
+db.game.belongsToMany(db.user, {
+    through: db.userGame,
+    foreignKey: 'gameId',
+    as: 'users'
+});
 
 
 
