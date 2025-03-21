@@ -166,6 +166,9 @@ const ShowGames = () => {
         label: per,
     }));
 
+    const sortedGames = [...filteredGames].sort((a, b) => 
+        a.name.localeCompare(b.name)
+    );
 
     return (
         <div className='ShowGames-Body'>
@@ -263,7 +266,7 @@ const ShowGames = () => {
                 <div className="ShowGames-GameMainContainer">
                     <div className='ShowGames-GameCards'>
                         {
-                            filteredGames.map(game => (
+                            sortedGames.map(game => (
                                 <Link to={`/game/${game.id}`} key={game.id}>
                                     <GameCard key={game.id} game={game} className="ShowGames-GameCard" />
                                 </Link>

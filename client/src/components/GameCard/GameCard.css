@@ -17,9 +17,50 @@
     height: fit-content;
     text-wrap:wrap;
     padding-bottom: 15px;
+    aspect-ratio: 2/3;
 }
 
 
 .GameCard-Body:hover{
     background-color: var(--gameAccentColor);
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .GameCard-Body{
+        width: 180px;
+    }
+
+    .GameCard-CoverImage {
+        width: 180px;
+        height: 270px;
+    }
+
+}
+
+
+@media only screen and (max-width: 600px) {
+    .GameCard-Body{
+        width: 170px;
+    }
+
+    .GameCard-CoverImage {
+        width: 170px;
+        height: 255px;
+    }
+
+}
+
+
+@media only screen and (max-width: 500px) {
+    .GameCard-Body{
+        width: 160px;
+        font-size: 15px;
+    }
+
+    .GameCard-CoverImage {
+        width: 160px;
+        height: 240px;
+    }
+
 }

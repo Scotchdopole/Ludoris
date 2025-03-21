@@ -41,8 +41,10 @@
   top: 50%;
   transform: translate(-50%, -50%);
   opacity: 0.3;
-  width: 1000px;
-  height: 500px;
+  max-width: 1000px;
+  max-height: 500px;
+  width: 100%;
+  height: 100%;
   animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate forwards;
   filter: brightness(0.5);
   filter: blur(100px);

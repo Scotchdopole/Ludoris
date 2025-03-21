@@ -118,3 +118,23 @@
 label {
     margin-top: 20px;
 }
+
+
+@media only screen and (max-width: 1000px) {
+    .ShowGames-MainContainer{
+        flex-direction: column;
+        align-items: center;
+        margin-top: 100px;
+        width: 100%;
+    }
+
+    .ShowGames-FilterMainContainer{
+        border-radius: 20px;
+        width: 90%;
+    }
+
+    .ShowGames-GameMainContainer{
+        gap: 5PX;
+        flex-direction: row;
+    }
+}

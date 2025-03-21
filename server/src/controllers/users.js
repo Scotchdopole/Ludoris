@@ -103,29 +103,29 @@ exports.getUserGamesWithStatus = async (req, res) => {
 
     try {
         const user = await User.findByPk(userId, {
-            include: {
-                model: Game,
-                as: 'games',
-                through: {
-                    attributes: ['status'], // Include 'status' from the join table
+            include: [
+                {
+                    model: Game,
+                    as: 'games',
+                    through: {
+                        attributes: ['status'], 
+                    },
                 },
-            },
+            ],
         });
 
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        // Check if user.Games is defined
-        if (!user.Games) {
+        if (!user.games) {
             return res.status(404).json({ error: 'No games found for this user' });
         }
 
-        // Map over the user's games and include the status from the join table
-        const gamesWithStatus = user.Games.map((game) => ({
+        const gamesWithStatus = user.games.map((game) => ({
             id: game.id,
             name: game.name,
-            status: game.UserGame.status, // Access status from the join table
+            status: game.UserGame ? game.UserGame.status : null, // Access status if available
         }));
 
         res.json(gamesWithStatus);
@@ -140,17 +140,26 @@ exports.updateUser = async (req, res) => {
     const userId = req.user.id;
     const { username, password } = req.body;
 
-    const user = await User.findByPk(userId);
+    try {
+        const user = await User.findByPk(userId);
 
-    if (!user) return res.status(404).json({ error: 'User not found' });
+        if (!user) return res.status(404).json({ error: 'User not found' });
 
-    if (username) user.username = username;
-    if (password) user.password = await bcrypt.hash(password, 10);
+        if (username) user.username = username;
+        if (password) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            user.password = hashedPassword;
+        }
 
-    await user.save();
+        await user.save();
 
-    res.json({ message: 'User updated successfully', user });
-};
+        res.json({ message: 'User updated successfully', user });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
 
 
 //get user by id

@@ -40,12 +40,11 @@
     height: 80%;
     border-radius: 40px;
     margin-top: 0px;
-    background-image: url("../../assets/images/heroBackgroundGrain.png");
 }
 
 
 .Home-HeroText {
-    font-size: 180px;
+    font-size: clamp( 2rem, 10vw, 15vw);
     font-family: Montserrat;
     font-weight: 600;
     letter-spacing: 30px;
@@ -60,10 +59,13 @@
 
 
 .Home-HeroSubText {
-    font-size: 30px;
+    font-size: clamp( 1rem, 3vw, 10vw);
     position: relative;
     top: -30px;
 }
+
+
+
 
 
 

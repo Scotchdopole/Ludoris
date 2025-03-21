@@ -183,7 +183,7 @@ lite-youtube {
 
 }
 
-@media only screen and (max-width: 1130px) {
+@media only screen and (max-width: 1150px) {
 
     .GamePage-MainContainer {
         padding-top: 50px;
@@ -204,6 +204,8 @@ lite-youtube {
 
     .GamePage-Container {
         height: 300px;
+        width: auto;
+        width: 100%;
 
     }
 
@@ -213,6 +215,8 @@ lite-youtube {
         padding-left: 20px;
         padding-right: 20px;
         margin-bottom: 50px;
+        align-items: center;
+        padding-top: 20px;
     }
 
     .GamePage-GameDesc {
@@ -220,12 +224,28 @@ lite-youtube {
         height: auto;
     }
 
-    lite-youtube {
-        transform: scale(0.7);
-    }
 
     .GamePage-CoverImage {
         margin-top: 20px;
     }
 
+}
+
+
+@media only screen and (max-width: 750px) {
+    lite-youtube {
+        transform: scale(0.9);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    lite-youtube {
+        transform: scale(0.7);
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    lite-youtube {
+        transform: scale(0.5);
+    }
 }

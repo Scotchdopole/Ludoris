@@ -21,10 +21,10 @@ router.post('/add-game/:id', userController.verifyToken, userController.addGameT
 router.get('/:id/games', userController.verifyToken, userController.getUserGamesWithStatus);
 
 //auth required
-router.put('/update', userController.verifyToken, userController.updateUser);
+router.put('/update/:id', userController.verifyToken, userController.updateUser);
 
 //auth required
-router.delete('/:id', userController.verifyToken, userController.deleteUser);
+router.delete('/delete/:id', userController.verifyToken, userController.deleteUser);
 
 router.use(userController.verifyToken);
 
