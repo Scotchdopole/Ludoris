@@ -209,6 +209,7 @@ lite-youtube {
 
     }
 
+
     .GamePage-Wrapper2 {
         flex-direction: column;
         height: fit-content;
@@ -228,6 +229,7 @@ lite-youtube {
     .GamePage-CoverImage {
         margin-top: 20px;
     }
+
 
 }
 

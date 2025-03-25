@@ -6,8 +6,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import fuse from "fuse.js"
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-
-
+import { useAuth } from "../../authContext";
 
 export default function NavBar() {
 
@@ -15,6 +14,8 @@ export default function NavBar() {
   const [results, setResults] = useState([]);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
+  const { isLoggedIn, userId } = useAuth();
+
 
 
   useEffect(() => {
@@ -92,9 +93,24 @@ export default function NavBar() {
           <div className="NavBar-Column">
           </div>
           <div className="NavBar-Buttons">
-            <Link to="/games"><button className='NavBar-Button'>EXPLORE</button></Link>
-            <button className='NavBar-Button'>ABOUT</button>
-            <Link to="/"><button className='NavBar-Button'>HOME</button></Link>
+            <Link to="/games">
+              <button className={`NavBar-Button`}>EXPLORE</button>
+            </Link>
+            <Link to="/about">
+              <button className={`NavBar-Button`}>ABOUT</button>
+            </Link>
+            <Link to="/">
+              <button className={`NavBar-Button`}>HOME</button>
+            </Link>
+            {isLoggedIn ? (
+              <Link to={`/profile/${userId}`}>
+                <button className="NavBar-Button">PROFILE</button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <button className="NavBar-Button">LOGIN</button>
+              </Link>
+            )}  
           </div>
         </div>
         <div className="NavBar-SearchResultContainer">

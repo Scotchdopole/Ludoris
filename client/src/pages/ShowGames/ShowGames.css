@@ -137,4 +137,8 @@ label {
         gap: 5PX;
         flex-direction: row;
     }
+
+    .ShowGames-GameMainContainer{
+        width: 100%;
+    }
 }

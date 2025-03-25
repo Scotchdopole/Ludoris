@@ -13,7 +13,7 @@
 }
 
 .RegisterPage-Form-MainContainer {
-    width: 30%;
+    width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +41,7 @@
     user-select: none;
 }
 
-.RegisterPage-Form-MainContainer form>input {
+.RegisterPage-Form-MainContainer form input {
     background-color: var(--primaryBackgorund);
     border: none;
     border-radius: none;
@@ -57,13 +57,14 @@
     margin-top: 10px;
 }
 
-.RegisterPage-Form-MainContainer form>input:focus {
+.RegisterPage-Form-MainContainer form input:focus {
     outline: none;
 }
 
 .RegisterPage-SubmitButton {
     border-radius: 0 0 20px 20px;
-    width: 70%;
+    width: 300px;
+    text-align: center;
     background-color: var(--secondaryBackground);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     border: none;
@@ -81,6 +82,90 @@
     outline: none;
 }
 
+.RegisterPage-Password-Input-Container {
+    position: relative;
+    width: 100%;
+}
+
+.RegisterPage-Password-Strength {
+    margin-top: 5px;
+    font-size: 0.8rem;
+}
+
+.RegisterPage-Strength-Text {
+    margin-bottom: 3px;
+}
+
+.RegisterPage-Strength-Meter {
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.RegisterPage-Strength-Meter-Fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.RegisterPage-Error-Message {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #fff;
+    padding: 0.8rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.RegisterPage-Success-Message {
+    background-color: rgba(0, 255, 0, 0.2);
+    color: #fff;
+    padding: 0.8rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.RegisterPage-Password-Input-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.RegisterPage-Password-Strength {
+    width: 70%;
+}
 
 
+.RegisterPage-Message-Container {
+    min-height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
 
+.RegisterPage-Error-Message {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #fff;
+    padding: 0.8rem;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.RegisterPage-Success-Message {
+    background-color: rgba(0, 255, 0, 0.2);
+    color: #fff;
+    padding: 0.8rem;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.RegisterPage-Message-Placeholder {
+    height: 0;
+    visibility: hidden;
+}

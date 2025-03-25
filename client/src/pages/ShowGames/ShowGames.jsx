@@ -264,7 +264,7 @@ const ShowGames = () => {
                     </button>
                 </div>
                 <div className="ShowGames-GameMainContainer">
-                    <div className='ShowGames-GameCards'>
+                    <div className='ShowGames-GameCards tracking-in-expand'>
                         {
                             sortedGames.map(game => (
                                 <Link to={`/game/${game.id}`} key={game.id}>

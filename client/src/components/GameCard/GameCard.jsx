@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { average } from 'color.js'
+import { average, prominent } from 'color.js'
 import "./GameCard.css"
 
 
@@ -13,7 +13,7 @@ export default function GameCard({ game }) {
   let coverImage = game ? `http://localhost:3000/${game.image}` : "";
 
   useEffect(() => {
-    average(coverImage, { format: "hex", amount: 1 })
+    average(coverImage, { format: "hex", amount: 1, sample: 1000})
       .then(color => {
         setDominantColor(color);
 
@@ -24,9 +24,9 @@ export default function GameCard({ game }) {
 
 
   return (
-    <div className='GameCard-Body' style={{ ...(isHovered ? { background: `${dominantColor}` } : {}) }}    
+    <div className='GameCard-Body' style={{ ...(isHovered ? { background: `${dominantColor}` } : {}) }}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)} >     
+      onMouseLeave={() => setIsHovered(false)} >
       <div
         className="GameCard-CoverImage"
         style={{

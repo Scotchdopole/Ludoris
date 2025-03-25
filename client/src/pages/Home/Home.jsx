@@ -2,10 +2,19 @@ import React from 'react'
 import "../../style.css"
 import "./Home.css"
 import NavBar from '../../components/NavBar/NavBar'
-
+import { useAuth } from '../../authContext';
 
 
 export default function Home() {
+
+  const { isLoggedIn } = useAuth();
+
+  if (isLoggedIn) {
+    console.log('You are logged in');
+  } else {
+    console.log('You are not logged in');
+  }
+  
   return (
     <>
    

@@ -64,7 +64,7 @@ const GamePage = () => {
 
     //get color from cover image
     useEffect(() => {
-        average(coverImage, { format: "hex", amount: 1, sample: 30 })
+        average(coverImage, { format: "hex", amount: 1, sample: 1000 })
             .then(color => {
                 setDominantColor(color);
             })
@@ -89,19 +89,19 @@ const GamePage = () => {
                     ></div>
                     <div className='GamePage-Container'>
                         <div>
-                        <p>Genres</p>
-                        <span>
-                            {game?.genres?.length > 0 ? (
-                                game.genres.map((genre, index) => (
-                                    <React.Fragment key={genre.name}>
-                                        <Link to={`/games/?genre=${genre.name}`}>{genre.name}</Link>
-                                        {index < game.genres.length - 1 && ", "}
-                                    </React.Fragment>
-                                ))
-                            ) : (
-                                "No data"
-                            )}
-                        </span>
+                            <p>Genres</p>
+                            <span>
+                                {game?.genres?.length > 0 ? (
+                                    game.genres.map((genre, index) => (
+                                        <React.Fragment key={genre.name}>
+                                            <Link to={`/games/?genre=${genre.name}`}>{genre.name}</Link>
+                                            {index < game.genres.length - 1 && ", "}
+                                        </React.Fragment>
+                                    ))
+                                ) : (
+                                    "No data"
+                                )}
+                            </span>
                         </div>
                         <div>
                             <p>Platforms</p>
@@ -206,10 +206,10 @@ const GamePage = () => {
                 </div>
                 <div className="GamePage-Wrapper2">
                     <div>
-                    <lite-youtube videoid={videoId} posterquality="maxresdefault" params="controls=1&showinfo=0&rel=0"  ></lite-youtube>
+                        <lite-youtube videoid={videoId} posterquality="maxresdefault" params="controls=1&showinfo=0&rel=0"  ></lite-youtube>
                     </div>
                     <div>
-                    <p className='GamePage-GameDesc' >{game.desc}</p>
+                        <p className='GamePage-GameDesc' >{game.desc}</p>
                     </div>
                 </div>
             </div>

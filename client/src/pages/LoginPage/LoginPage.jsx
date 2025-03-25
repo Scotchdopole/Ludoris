@@ -2,8 +2,8 @@ import "../../style.css"
 import "./LoginPage.css"
 import NavBar from '../../components/NavBar/NavBar'
 import { Link, useNavigate } from 'react-router-dom'
-import React, { useRef, useState } from 'react';
-import { auth } from "../../usersAuth";
+import React, { useRef, useState, useEffect } from 'react';
+import { useAuth } from "../../authContext"
 
 export default function LoginPage() {
     const [username, setUsername] = useState('');
@@ -12,11 +12,12 @@ export default function LoginPage() {
     const [isLoading, setIsLoading] = useState(false);
     const formRef = useRef(null);
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const getUserIdFromToken = () => {
         const token = localStorage.getItem('token');
         if (!token) return null;
-        
+
         try {
             const base64Url = token.split('.')[1];
             const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -34,15 +35,18 @@ export default function LoginPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-
         setIsLoading(true);
 
         try {
-            await auth.login(username, password);
+            if (login) {
+                await login(username, password);
+            } else {
+                await auth.login(username, password);
+            }
+
             setIsLoading(false);
-            
             const userId = getUserIdFromToken();
-            
+
             if (userId) {
                 navigate(`/profile/${userId}`);
             } else {
@@ -60,11 +64,28 @@ export default function LoginPage() {
         }
     };
 
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "Enter") {
+                handleButtonClick();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, []);
+
     return (
         <div className="LoginPage-Body">
             <NavBar></NavBar>
             <div className="LoginPage-Form-MainContainer">
-                {error && <div className="error-message">{error}</div>}
+                <div className="LoginPage-Message-Container">
+                    {error ? (
+                        <div className="LoginPage-Error-Message">{error}</div>
+                    ) : (
+                        <div className="LoginPage-Message-Placeholder"></div>
+                    )}
+                </div>
                 <form onSubmit={handleSubmit} ref={formRef}>
                     <label>LOGIN</label>
                     <input type="text" value={username}
@@ -89,3 +110,4 @@ export default function LoginPage() {
         </div>
     )
 }
+
