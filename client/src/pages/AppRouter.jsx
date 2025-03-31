@@ -7,6 +7,7 @@ import LoginPage from "./LoginPage/LoginPage"
 import RegisterPage from "./RegisterPage/RegisterPage"
 import UserProfile from "./UserProfile/UserProfile"
 import AdminPanel from "./AdminPanel/AdminPanel"
+import CreateForm from "./AdminPanel/CreateForm/CreateForm"
 
 
 
@@ -25,6 +26,14 @@ export default function AppRouter() {
           element={
             <AdminRoute>
               <AdminPanel />
+            </AdminRoute>
+          }
+        />
+         <Route
+          path="/admin/create-game"
+          element={
+            <AdminRoute>
+              <CreateForm />
             </AdminRoute>
           }
         />

@@ -75,15 +75,11 @@ db.game.belongsToMany(db.user, {
 });
 
 
-
-
-
 db.sequelize.sync({force:false})
     .then(async () => {
         console.log("sync done")
 
         
     })
-
 
 module.exports = db

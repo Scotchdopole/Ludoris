@@ -1,0 +1,189 @@
+.CreateForm-Body {
+    width: 100%;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background-color: var(--primaryBackgorund);
+    justify-content: center;
+    display: flex;
+    gap: 5px;
+}
+
+.CreateForm-Form {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: auto;
+}
+
+.CreateForm-MainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 100px;
+}
+
+
+.message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    background-color: var(--secondaryBackground);
+    color: #fff;
+}
+
+.CreateForm-FormGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.CreateForm-Form input,
+.CreateForm-Form select,
+.CreateForm-Form textarea {
+    background-color: var(--secondaryBackground);
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.CreateForm-Form input:focus, .CreateForm-Form textarea:focus{
+   outline: none;
+}
+
+.CreateForm-Body iinput[type="number"]::-webkit-outer-spin-button,
+.CreateForm-Body input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+.CreateForm-Body input[type="file"] {
+    background-color: transparent;
+    border: none;
+    padding: 5px 0;
+
+}
+
+.CreateForm-Body select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 30px;
+}
+
+.CreateForm-Body select[multiple] {
+    height: auto;
+    min-height: 150px;
+    background-image: none;
+    
+}
+
+
+.CreateForm-Body select[multiple] option:checked {
+    background-color: #4a4a4a;
+    color: #ffffff; 
+}
+
+
+.CreateForm-Body select[multiple] option:hover {
+    background-color: #6a6a6a;
+}
+
+
+small {
+    color: #9999aa;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.dynamic-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.dynamic-input-group input {
+    flex: 1;
+}
+
+.CreateForm-Body button {
+    background-color: #3d3d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.CreateForm-Body button:hover {
+    background-color: #4d4d5d;
+}
+
+.remove-btn {
+    background-color: #4a3034;
+    color: #ff8888;
+}
+
+.remove-btn:hover {
+    background-color: #5a3a3e;
+}
+
+.add-btn {
+    background-color: #2d3d4d;
+    color: #88aaff;
+    margin-top: 5px;
+    width: fit-content;
+}
+
+.add-btn:hover {
+    background-color: #3d4d5d;
+}
+
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit-btn {
+    background-color: #4d4d8d;
+    padding: 12px 24px;
+    font-size: 16px;
+}
+
+.submit-btn:hover {
+    background-color: var(--button);
+}
+
+.submit-btn:disabled {
+    background-color: var(--buttonHover);
+    cursor: not-allowed;
+}
+
+
+.CreateForm-Form label {
+    margin-top: 10px;
+}
+
+
+.CreateForm-Form textarea {
+    resize: vertical;
+    min-height: 100px;
+}

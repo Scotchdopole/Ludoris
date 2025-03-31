@@ -115,10 +115,23 @@
 }
 
 
-label {
+.ShowGames-Body label {
     margin-top: 20px;
 }
 
+.ShowGames-FilterMainContainer button{
+    background-color: var(--button);
+    border: none;
+    outline: none;
+    transition: 300ms all ease-in-out;
+}
+
+.ShowGames-FilterMainContainer button:hover{
+    background-color: var(--buttonHover);
+    border: none;
+    outline: none;
+    transition: 300ms all ease-in-out;
+}
 
 @media only screen and (max-width: 1000px) {
     .ShowGames-MainContainer{

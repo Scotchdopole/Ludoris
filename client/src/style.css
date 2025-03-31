@@ -19,6 +19,8 @@
   --secondaryBackgroundHover: #33265571;
   --primaryFont: #ffffff;
   --secondaryFont: #8C859F;
+  --button: #5d5d9d;
+  --buttonHover: #3d3d5d;
 }
 
 @font-face {
