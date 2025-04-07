@@ -14,17 +14,19 @@ router.get('/:id', userController.getUserById);
 
 router.get('/', userController.getAllUsers);
 
-//auth required
-router.post('/add-game/:id', userController.verifyToken, userController.addGameToUser);
+router.get('/:id/games', userController.getUserGamesWithStatus);
 
 //auth required
-router.get('/:id/games', userController.verifyToken, userController.getUserGamesWithStatus);
+router.post('/:id/add-game', userController.verifyToken, userController.addGameToUser);
 
 //auth required
 router.put('/update/:id', userController.verifyToken, userController.updateUser);
 
 //auth required
 router.delete('/delete/:id', userController.verifyToken, userController.deleteUser);
+
+//auth required
+router.delete('/:id/remove-game', userController.verifyToken, userController.removeGameFromUser);
 
 router.use(userController.verifyToken);
 

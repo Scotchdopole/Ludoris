@@ -9,7 +9,9 @@ export default function AdminPanel() {
     <div className='AdminPanel-Body'>
       <div className="AdminPanel-MainContainer">
         <h2>AdminPanel</h2>
-        <button><Link to="/admin/create-game" >Create Form</Link></button>
+        <Link to="/admin/create-game"><button>Create Form</button></Link>
+        <Link to="/admin/update-game" ><button>Update Form</button></Link>
+        <Link to={"/"}><button style={{backgroundColor: '#dc3545'}}>Exit</button></Link>
       </div>
     </div>
   )

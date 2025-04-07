@@ -20,7 +20,6 @@ export default function GameCard({ game }) {
       })
       .catch(err => console.error('Error getting color:', err));
   }, [coverImage, isHovered]);
-  document.documentElement.style.setProperty("--gameAccentColor", dominantColor);
 
 
   return (

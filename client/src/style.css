@@ -3,15 +3,39 @@
   transition: 300ms all ease-in-out;
   -moz-transition: 300ms all ease-in-out;
   color: var(--primaryFont);
- 
+
 }
 
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(180, 180, 180, 0.3);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 200, 200, 0.5);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180, 180, 180, 0.3) transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
 ::selection {
   background: rgba(138, 43, 226, 0.5);
 }
 ::-moz-selection {
   background: rgba(138, 43, 226, 0.5);
 }
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.5);
+}
+
+
 
 :root {
   --primaryBackgorund: #0e0d11;
@@ -19,8 +43,11 @@
   --secondaryBackgroundHover: #33265571;
   --primaryFont: #ffffff;
   --secondaryFont: #8C859F;
-  --button: #5d5d9d;
+  --button: #60427c;
   --buttonHover: #3d3d5d;
+  --dangerButton: #dc3545;
+  --dangerButtonHover: #a01a27;
+  color-scheme: dark
 }
 
 @font-face {
@@ -59,9 +86,9 @@
   filter: blur(100px);
   z-index: -1;
   background: linear-gradient(47deg,
-          rgba(255, 88, 139, 1) 21%,
-          rgb(0 164 173) 67%,
-          rgba(118, 74, 166, 1) 81%);
+      rgba(255, 88, 139, 1) 21%,
+      rgb(0 164 173) 67%,
+      rgba(118, 74, 166, 1) 81%);
 }
 
 
@@ -142,4 +169,3 @@
     text-shadow: 0 1px 0 #cccccc, 0 2px 0 #cccccc, 0 3px 0 #cccccc, 0 4px 0 #cccccc, 0 5px 0 #cccccc, 0 6px 0 #cccccc, 0 7px 0 #cccccc, 0 8px 0 #cccccc, 0 9px 0 #cccccc, 0 50px 30px rgba(0, 0, 0, 0.3);
   }
 }
-

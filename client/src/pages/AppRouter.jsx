@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import ScrollToTop from "../components/ScrollToTop";
 import AdminRoute from "./AdminRoute"
 import ShowGames from "./ShowGames/ShowGames"
 import GamePage from "./GamePage/GamePage"
@@ -8,12 +9,14 @@ import RegisterPage from "./RegisterPage/RegisterPage"
 import UserProfile from "./UserProfile/UserProfile"
 import AdminPanel from "./AdminPanel/AdminPanel"
 import CreateForm from "./AdminPanel/CreateForm/CreateForm"
+import UpdateForm from "./AdminPanel/UpdateForm/UpdateForm";
 
 
 
 export default function AppRouter() {
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <Routes>
         <Route path="/games" element={<ShowGames />} />
         <Route path="/game/:id" element={<GamePage />} />
@@ -29,11 +32,19 @@ export default function AppRouter() {
             </AdminRoute>
           }
         />
-         <Route
+        <Route
           path="/admin/create-game"
           element={
             <AdminRoute>
               <CreateForm />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/update-game"
+          element={
+            <AdminRoute>
+              <UpdateForm />
             </AdminRoute>
           }
         />

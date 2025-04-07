@@ -59,7 +59,7 @@ exports.loginUser = async (req, res) => {
 };
 //add game to user
 exports.addGameToUser = async (req, res) => {
-    const { gameId, status } = req.body;
+    const { gameId } = req.body;
     const userId = req.user.id;
 
     const user = await User.findByPk(userId);
@@ -73,9 +73,33 @@ exports.addGameToUser = async (req, res) => {
         return res.status(400).json({ error: 'Game already added for this user' });
     }
 
-    await user.addGame(game, { through: { status: status || false } });
+    await user.addGame(game);
 
-    res.json({ message: `Game added to user with status "${status || 'false'}"` });
+    res.json({ message: "Game added to user" });
+};
+
+//remove game from completed
+exports.removeGameFromUser = async (req, res) => {
+    const { gameId } = req.body;
+    const userId = req.user.id;
+
+    try {
+        const deletedRows = await UserGame.destroy({
+            where: {
+                userId,
+                gameId,
+            },
+        });
+
+        if (deletedRows === 0) {
+            return res.status(404).json({ error: 'Game not found in user\'s list.' });
+        }
+
+        res.json({ message: 'Game removed from user\'s list.' });
+    } catch (error) {
+        console.error('Error removing game:', error);
+        res.status(500).json({ error: 'Failed to remove game.' });
+    }
 };
 
 //jwt verification
@@ -108,7 +132,7 @@ exports.getUserGamesWithStatus = async (req, res) => {
                     model: Game,
                     as: 'games',
                     through: {
-                        attributes: ['status'], 
+                        attributes: ['status'],
                     },
                 },
             ],
@@ -125,7 +149,7 @@ exports.getUserGamesWithStatus = async (req, res) => {
         const gamesWithStatus = user.games.map((game) => ({
             id: game.id,
             name: game.name,
-            status: game.UserGame ? game.UserGame.status : null, // Access status if available
+            image: game.image
         }));
 
         res.json(gamesWithStatus);
@@ -199,20 +223,26 @@ exports.getAllUsers = async (req, res) => {
 //delete user
 exports.deleteUser = async (req, res) => {
     const userId = req.params.id;
+    const { password: enteredPassword } = req.body;
+    if (!enteredPassword) {
+        return res.status(400).json({ error: 'Password is required in the request body to delete the account.' });
+    }
 
     try {
         const user = await User.findByPk(userId);
-
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
-
+        const isPasswordCorrect = await bcrypt.compare(enteredPassword, user.password);
+        if (!isPasswordCorrect) {
+            return res.status(401).json({ error: 'Incorrect password. Account deletion denied.' });
+        }
         await user.destroy();
+        res.status(200).json({ message: 'User deleted successfully after password verification.' });
 
-        res.json({ message: 'User deleted successfully' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
+        console.error('Error during user deletion process:', error);
+        res.status(500).json({ error: 'Internal server error during account deletion.' });
     }
 };
 

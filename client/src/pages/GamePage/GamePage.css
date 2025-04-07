@@ -25,6 +25,7 @@ html {
     color: var(--primaryFont);
     font-size: 40px;
     user-select: none;
+    width: fit-content;
 }
 
 .GamePage-CoverImage {
@@ -104,6 +105,29 @@ html {
     transform: scaleX(1);
 }
 
+.GamePage-Error-Message {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.GamePage-Success-Message {
+    background-color: rgba(0, 255, 0, 0.2);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.GamePage-Message-Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
 
 .GamePage-Wrapper {
     display: flex;
@@ -124,6 +148,25 @@ html {
     margin-bottom: 20px;
     text-wrap: wrap;
     padding-right: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.GamePage-TitleContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+
+.GamePage-CheckBoxContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    margin-right: 100px;
+    gap: 20px; 
 }
 
 .GamePage-Wrapper2:hover {
@@ -197,6 +240,20 @@ lite-youtube {
 
     }
 
+    .GamePage-TitleContainer > div{
+        width: auto;
+        
+    }
+
+    .GamePage-CheckBoxContainer{
+        justify-content:left;
+        flex-direction: row-reverse;
+    }
+
+    .GamePage-Message-Container{
+        order: 3;
+    }
+
     .GamePage-Wrapper>div {
         margin-bottom: 20px;
 
@@ -230,6 +287,14 @@ lite-youtube {
         margin-top: 20px;
     }
 
+    .GamePage-TitleContainer{
+        flex-direction: column;
+    }
+
+    .GamePage-TitleContainer > button{
+        width: 200px;
+    }
+
 
 }
 
@@ -251,3 +316,57 @@ lite-youtube {
         transform: scale(0.5);
     }
 }
+
+
+
+  .GamePage-Switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    height: 2em;
+  }
+  
+  .GamePage-Switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+
+  .GamePage-Slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #707070;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+  
+  .GamePage-Slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    left: 0.3em;
+    bottom: 0.3em;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 0 0px 20px rgba(0,0,0,0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .GamePage-Switch input:checked + .GamePage-Slider {
+    background: #b84fce;
+  }
+  
+  .GamePage-Switch input:focus + .GamePage-Slider {
+    box-shadow: 0 0 1px #b84fce;
+  }
+  
+  .GamePage-Switch input:checked + .GamePage-Slider:before {
+    transform: translateX(1.6em);
+    width: 2em;
+    height: 2em;
+    bottom: 0;
+  }

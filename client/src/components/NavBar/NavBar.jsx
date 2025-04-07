@@ -117,7 +117,7 @@ export default function NavBar() {
           <ul>
             {results.map((game) => (
               <li key={game.id} style={{ paddingBottom: "12px" }}>
-                <Link to={`/game/${game.id}`}>{game.name}</Link>
+                <Link onClick={() => setQuery("")} to={`/game/${game.id}`}>{game.name}</Link>
               </li>
             ))}
           </ul>

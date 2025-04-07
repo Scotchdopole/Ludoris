@@ -1,58 +1,117 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import "../../style.css";
-import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom';
-import "./GamePage.css"
-import NavBar from "../../components/NavBar/NavBar"
+import { useParams, Link } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
 import YouTubeVideoId from 'youtube-video-id';
-import { average } from 'color.js'
+import { average } from 'color.js';
 import '@justinribeiro/lite-youtube';
-
-
-
-
+import NavBar from "../../components/NavBar/NavBar";
+import "../../style.css";
+import "./GamePage.css";
 
 const GamePage = () => {
-
     const [game, setGame] = useState({});
     const [gamePrice, setGamePrice] = useState(null);
     const [isHovered, setIsHovered] = useState(false);
     const [dominantColor, setDominantColor] = useState(null);
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+    const [isCompleted, setIsCompleted] = useState(false);
+    const { id } = useParams();
+    const [showMessage, setShowMessage] = useState(true);
 
-
-    let { id } = useParams();
-
-    //get games data
     useEffect(() => {
         const getGamesData = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:3000/api/games/${id}`)
+                const { data } = await axios.get(`http://localhost:3000/api/games/${id}`);
                 setGame(data);
             } catch (err) {
-                console.log(err)
+                console.error("Error fetching game data:", err);
+                setError("Failed to load game data");
+            }
+        };
+        getGamesData();
+    }, [id]);
+
+    useEffect(() => {
+        setGamePrice(game.price === 0 ? "Free" : `€${game.price}`);
+    }, [game.price]);
+
+    const coverImage = game.image ? `http://localhost:3000/${game.image}` : "";
+
+    useEffect(() => {
+        if (coverImage) {
+            average(coverImage, { format: "hex", amount: 1, sample: 1000 })
+                .then(setDominantColor)
+                .catch(err => console.error('Error getting color:', err));
+        }
+    }, [coverImage]);
+
+    useEffect(() => {
+        const checkGameCompleted = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) return;
+
+            try {
+                const decodedToken = jwtDecode(token);
+                const userId = decodedToken.userId || decodedToken.sub || decodedToken.id || decodedToken._id;
+
+                if (!userId) {
+                    console.error("User ID not found in token:", decodedToken);
+                    return;
+                }
+
+                const response = await axios.get(`http://localhost:3000/api/user/${userId}/games`, {
+                    headers: { 'Authorization': `Bearer ${token}` },
+                });
+
+                const completedGameIds = response.data.map((game) => String(game.id));
+                setIsCompleted(completedGameIds.includes(String(id)));
+            } catch (error) {
+                console.error("Error checking game completion:", error);
+                setError("Failed to check game completion status");
+            }
+        };
+
+        checkGameCompleted();
+    }, [id]);
+
+    const handleSwitchChange = async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            setError("Please login to mark games as completed.");
+            return;
+        }
+
+        try {
+            const decodedToken = jwtDecode(token);
+            const userId = decodedToken.userId || decodedToken.sub || decodedToken.id || decodedToken._id;
+
+            if (!userId) {
+                setError("User ID not found in token");
+                return;
             }
 
-        };
-        getGamesData()
-    }, [id])
+            const newCompletionStatus = !isCompleted;
+            const url = `http://localhost:3000/api/user/${userId}/${newCompletionStatus ? 'add-game' : 'remove-game'}`;
+            const method = newCompletionStatus ? 'post' : 'delete';
+            const data = { gameId: id };
 
-    //video id from youtb url
-    const videoId = game.ytbTrailerLink ? YouTubeVideoId(game.ytbTrailerLink) : null;
+            await axios({
+                method,
+                url,
+                data,
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
 
-    //price converter
-    useEffect(() => {
-        if (game.price == 0) {
-            setGamePrice("Free");
-        } else {
-            setGamePrice("€" + game.price);
+            setIsCompleted(newCompletionStatus);
+            setSuccess(newCompletionStatus ? "Game marked as completed!" : "Game removed from completed list.");
+        } catch (error) {
+            console.error("Error updating game completion:", error);
+            setError("Failed to update game status");
         }
-    }, [game]);
+    };
 
-    //get cover image url
-    let coverImage = game ? `http://localhost:3000/${game.image}` : "";
-
-    //date formater
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return date.toLocaleDateString("cs-CZ", {
@@ -62,21 +121,47 @@ const GamePage = () => {
         });
     };
 
-    //get color from cover image
+    //message timer
     useEffect(() => {
-        average(coverImage, { format: "hex", amount: 1, sample: 1000 })
-            .then(color => {
-                setDominantColor(color);
-            })
-            .catch(err => console.error('Error getting color:', err));
-    }, [coverImage]);
-    document.documentElement.style.setProperty("--gameAccentColor", dominantColor);
+        if (error || success) {
+            setShowMessage(true);
 
+            const timer = setTimeout(() => {
+                setShowMessage(false);
+            }, 3000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [error, success]);
+
+    const videoId = game.ytbTrailerLink ? YouTubeVideoId(game.ytbTrailerLink) : null;
     return (
         <div className="GamePage-body">
             <NavBar></NavBar>
             <div className="GamePage-MainContainer">
-                <span className='GamePage-Title tracking-in-expand'>{game.name}</span>
+                <div className='GamePage-TitleContainer'>
+                    <div style={{width: "40%"}}>
+                        <span className='GamePage-Title tracking-in-expand'>{game.name}</span>
+                    </div>
+                    <div style={{width: "25%"}} className="GamePage-Message-Container">
+                        {showMessage && (
+                            error ? (
+                                <div className="GamePage-Error-Message">{error}</div>
+                            ) : success ? (
+                                <div className="GamePage-Success-Message">{success}</div>
+                            ) : (
+                                <div className="GamePage-Message-Placeholder" ></div>
+                            )
+                        )}
+                    </div>
+                    <div style={{width: "35%"}} className='GamePage-CheckBoxContainer'>
+                        <label htmlFor="">{isCompleted ? "Completed" : "Mark as Completed"}</label>
+                        <label className='GamePage-Switch'>
+                            <input type="checkbox" checked={isCompleted} onChange={handleSwitchChange} />
+                            <span className='GamePage-Slider'></span>
+                        </label>
+                    </div>
+                </div>
                 <div className="GamePage-Wrapper">
                     <div
                         className="GamePage-CoverImage"

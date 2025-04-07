@@ -1,4 +1,4 @@
-.UserProfile-Body{
+.UserProfile-Body {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -8,16 +8,82 @@
     background-color: var(--primaryBackgorund);
 }
 
-.UserProfile-Username{
+.UserProfile-Username {
     color: var(--primaryFont);
     font-size: 40px;
     user-select: none;
 }
 
-.UserProfile-MainContainer{
-    margin-top: 100px;
+.UserProfile-MainContainer {
+    margin-top: 150px;
     padding-left: 150px;
     padding-right: 150px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.UserProfile-GameCardsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: fit-content;
+    flex-wrap: wrap;
+    row-gap: 50px;
+    column-gap: 30px;
+}
+
+.UserProfile-CompletedGames{
+    width: 90%;
+}
+
+.UserProfile-UserContainer {
+    background-color: var(--secondaryBackground);
+    width: 90%;
+    height: 300px;
+    padding: 10px 20px 0px 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.UserProfile-UserContainer>div {
+    width: 50%;
+}
+
+.UserProfile-UserActionBtns {
+    display: flex;
+    justify-content: right;
+    height: fit-content;
+    gap: 20px;
+
+}
+
+.UserProfile-UserActionBtns button {
+    background-color: var(--button);
+    border: none;
+    transition: all 300ms ease-in-out;
+}
+
+.UserProfile-UserActionBtns button:hover {
+    background-color: var(--buttonHover);
+    transition: all 300ms ease-in-out;
+}
+
+.UserProfile-DeleteButton {
+    background-color: var(--dangerButton) !important; 
+}
+
+
+.UserProfile-DeleteButton:hover {
+    background-color: var(--dangerButtonHover) !important;
+}
+
+@media only screen and (max-width: 1150px) {
+    .UserProfile-MainContainer {
+        padding: 20px;
+    }
+
 }

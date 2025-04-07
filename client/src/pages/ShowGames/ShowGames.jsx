@@ -9,6 +9,7 @@ import { useSearchParams } from "react-router-dom";
 import Select from "react-select";
 
 
+
 const ShowGames = () => {
 
     const [games, setGames] = useState([]);
@@ -24,13 +25,13 @@ const ShowGames = () => {
     });
 
 
+
     //get data from api
     useEffect(() => {
         const getGamesData = async () => {
             try {
                 const { data } = await axios.get('http://localhost:3000/api/games/');
                 setGames(data);
-
                 const getUniqueValues = (array, key) => {
                     if (key === "developers" || key === "publishers") {
                         return [...new Set(array.flatMap((game) => game[key].map((item) => item.name)))];

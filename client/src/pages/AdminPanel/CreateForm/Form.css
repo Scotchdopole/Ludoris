@@ -1,6 +1,5 @@
-.CreateForm-Body {
+.Form-Body {
     width: 100%;
-    width: 100vw;
     position: absolute;
     top: 0;
     left: 0;
@@ -8,22 +7,22 @@
     background-color: var(--primaryBackgorund);
     justify-content: center;
     display: flex;
-    gap: 5px;
 }
 
-.CreateForm-Form {
+.Form-Form {
     display: flex;
     flex-direction: row;
     gap: 20px;
     width: auto;
 }
 
-.CreateForm-MainContainer {
+.Form-MainContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 100px;
 }
+
 
 
 .message {
@@ -34,7 +33,7 @@
     color: #fff;
 }
 
-.CreateForm-FormGroup {
+.FormGroup {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -46,9 +45,9 @@ label {
     margin-bottom: 5px;
 }
 
-.CreateForm-Form input,
-.CreateForm-Form select,
-.CreateForm-Form textarea {
+.Form-Body input,
+.Form-Body select,
+.Form-Body textarea {
     background-color: var(--secondaryBackground);
     border: none;
     border-radius: 4px;
@@ -57,26 +56,45 @@ label {
     font-size: 14px;
 }
 
-.CreateForm-Form input:focus, .CreateForm-Form textarea:focus{
-   outline: none;
+.Form-Body select option {
+        background-color: #1e1a28;
+        color: #fff;
 }
 
-.CreateForm-Body iinput[type="number"]::-webkit-outer-spin-button,
-.CreateForm-Body input[type="number"]::-webkit-inner-spin-button {
+.Form-GoBack{   
+    margin-top: 20px;
+}
+
+.Form-Form input:focus,
+.Form-Form textarea:focus {
+    outline: none;
+}
+
+@media only screen and (max-width: 1300px) {
+
+    .GamePage-Container {
+        width: 500px;
+    }
+
+
+}
+
+.Form-Body iinput[type="number"]::-webkit-outer-spin-button,
+.Form-Body input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
 
 
-.CreateForm-Body input[type="file"] {
+.Form-Body input[type="file"] {
     background-color: transparent;
     border: none;
     padding: 5px 0;
 
 }
 
-.CreateForm-Body select {
+.Form-Body select {
     appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
@@ -85,21 +103,21 @@ label {
     padding-right: 30px;
 }
 
-.CreateForm-Body select[multiple] {
+.Form-Body select[multiple] {
     height: auto;
     min-height: 150px;
     background-image: none;
-    
+
 }
 
 
-.CreateForm-Body select[multiple] option:checked {
+.Form-Body select[multiple] option:checked {
     background-color: #4a4a4a;
-    color: #ffffff; 
+    color: #ffffff;
 }
 
 
-.CreateForm-Body select[multiple] option:hover {
+.Form-Body select[multiple] option:hover {
     background-color: #6a6a6a;
 }
 
@@ -121,7 +139,7 @@ small {
     flex: 1;
 }
 
-.CreateForm-Body button {
+.Form-Body button {
     background-color: #3d3d4d;
     color: white;
     border: none;
@@ -132,17 +150,8 @@ small {
     transition: background-color 0.2s;
 }
 
-.CreateForm-Body button:hover {
+.Form-Body button:hover {
     background-color: #4d4d5d;
-}
-
-.remove-btn {
-    background-color: #4a3034;
-    color: #ff8888;
-}
-
-.remove-btn:hover {
-    background-color: #5a3a3e;
 }
 
 .add-btn {
@@ -178,12 +187,12 @@ small {
 }
 
 
-.CreateForm-Form label {
+.Form-Form label {
     margin-top: 10px;
 }
 
 
-.CreateForm-Form textarea {
+.Form-Form textarea {
     resize: vertical;
     min-height: 100px;
 }
