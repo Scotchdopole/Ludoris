@@ -1,7 +1,7 @@
 import "../../style.css"
 import "./LoginPage.css"
 import NavBar from '../../components/NavBar/NavBar'
-import { Link, useNavigate } from 'react-router-dom'
+import { data, Link, useNavigate, useRouteLoaderData } from 'react-router-dom'
 import React, { useRef, useState, useEffect } from 'react';
 import { useAuth } from "../../authContext"
 
@@ -31,6 +31,8 @@ export default function LoginPage() {
             return null;
         }
     };
+
+  
 
     const handleSubmit = async (e) => {
         e.preventDefault();
