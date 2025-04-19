@@ -10,6 +10,7 @@ import UserProfile from "./UserProfile/UserProfile"
 import AdminPanel from "./AdminPanel/AdminPanel"
 import CreateForm from "./AdminPanel/CreateForm/CreateForm"
 import UpdateForm from "./AdminPanel/UpdateForm/UpdateForm";
+import NotFound from "./NotFound/NotFound";
 
 
 
@@ -24,6 +25,7 @@ export default function AppRouter() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/profile/:profileId" element={<UserProfile />} />
+        <Route path="/*" element={<NotFound />} />
         <Route
           path="/admin"
           element={

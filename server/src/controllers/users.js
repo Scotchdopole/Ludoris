@@ -38,12 +38,14 @@ exports.loginUser = async (req, res) => {
             return res.status(400).json({ error: 'Invalid username or password' });
         }
 
-
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (!isPasswordValid) {
             return res.status(400).json({ error: 'Invalid username or password' });
         }
+
+        user.lastOnline = new Date();
+        await user.save();
 
         const token = jwt.sign(
             { id: user.id, username: user.username },
@@ -57,6 +59,7 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
 //add game to user
 exports.addGameToUser = async (req, res) => {
     const { gameId } = req.body;

@@ -44,8 +44,8 @@
     padding: 10px 20px 0px 20px;
     border-radius: 20px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: start;
 
 }
 
@@ -61,10 +61,39 @@
 
 }
 
+.UserProfile-UserStats{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100% !important;
+}
+
 .UserProfile-UserActionBtns button {
     background-color: var(--button);
     border: none;
     transition: all 300ms ease-in-out;
+}
+
+.UserProfile-UserStats p {
+    font-size: clamp(20px, 4vw, 35px);
+    margin-bottom: 0px;
+    margin-top: -20px;
+    color: var(--primaryFont);
+}
+
+.UserProfile-UserStats span {
+    font-size: clamp(16px, 2.5vw, 25px);
+    color: var(--secondaryFont);
+}
+
+.UserProfile-UserStats>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .UserProfile-UserActionBtns button:hover {
@@ -84,6 +113,17 @@
 @media only screen and (max-width: 1150px) {
     .UserProfile-MainContainer {
         padding: 20px;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .UserProfile-UserContainer > div:first-child {
+        flex-direction: column;
+    }
+
+    .UserProfile-UserActionBtns{
+        flex-direction: column;
     }
 
 }

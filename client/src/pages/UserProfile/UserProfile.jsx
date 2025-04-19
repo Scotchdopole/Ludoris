@@ -15,11 +15,14 @@ export default function UserProfile() {
     const isAdmin = userId == "1" && profileId == "1";
 
     const [completedGames, setCompletedGames] = useState([]);
-    const [username, setUsername] = useState('');
+    const [user, setUser] = useState('');
     const [error, setError] = useState("");
+    const [userCreatedDate, setUserCreatedDate] = useState();
+    const [userLastOnlineDate, setUserLastOnlineDate] = useState();
+    const [favoriteGenre, setFavoriteGenre] = useState('N/A');
+    const [detailedGames, setDetailedGames] = useState([]);
 
     const token = localStorage.getItem('token');
-    console.log(token)
 
     useEffect(() => {
         const fetchCompletedGames = async () => {
@@ -39,21 +42,75 @@ export default function UserProfile() {
     }, [profileId]);
 
     useEffect(() => {
-        const getUsername = async () => {
+        const getUser = async () => {
             setError("");
             try {
                 const userData = await axios.get(`http://localhost:3000/api/user/${profileId}`);
-                setUsername(userData.data.username);
+                setUser(userData.data)
             } catch (err) {
                 console.error('Cannot get user data:', err);
                 setError(`Failed to load user data: ${err.message}`);
-                navigate("/404")
             }
         };
         if (profileId) {
-            getUsername();
+            getUser();
         }
-    }, [profileId]);
+    }, [profileId, navigate]);
+
+    // Po načtení completedGames stáhni detaily všech her
+    useEffect(() => {
+        const fetchGameDetails = async () => {
+            if (!completedGames || completedGames.length === 0) {
+                setDetailedGames([]);
+                return;
+            }
+            try {
+                const details = await Promise.all(
+                    completedGames.map(async (game) => {
+                        const response = await axios.get(`http://localhost:3000/api/game/${game.id}`);
+                        return response.data;
+                    })
+                );
+                setDetailedGames(details);
+            } catch (err) {
+                console.error('Chyba při načítání detailů her:', err);
+                setDetailedGames([]);
+            }
+        };
+
+        fetchGameDetails();
+    }, [completedGames]); // Závislost na completedGames
+
+
+    // Effect to calculate favorite genre
+    useEffect(() => {
+        if (detailedGames.length > 0) {
+            const genreCounts = {};
+            detailedGames.forEach(game => {
+                // game.genres je pole objektů, každý má .name
+                if (Array.isArray(game.genres)) {
+                    game.genres.forEach(genreObj => {
+                        if (genreObj && genreObj.name) {
+                            const genreName = genreObj.name;
+                            genreCounts[genreName] = (genreCounts[genreName] || 0) + 1;
+                        }
+                    });
+                }
+            });
+
+            let mostFrequentGenre = 'N/A';
+            let maxCount = 0;
+            for (const genre in genreCounts) {
+                if (genreCounts[genre] > maxCount) {
+                    maxCount = genreCounts[genre];
+                    mostFrequentGenre = genre;
+                }
+            }
+            setFavoriteGenre(mostFrequentGenre);
+        } else {
+            setFavoriteGenre('N/A');
+        }
+    }, [detailedGames]);
 
     const handleLogout = () => {
         logout();
@@ -62,27 +119,23 @@ export default function UserProfile() {
 
     const handleDeleteAccount = async () => {
         setError("");
-        const enteredPassword = window.prompt("Enter your password");
+        const enteredPassword = window.prompt("Enter your password to confirm account deletion:");
 
-        if (enteredPassword === null) {
-            console.log("Account deletion cancelled");
+        if (!enteredPassword) {
+            console.log("Account deletion cancelled by user.");
             return;
         }
 
-        if (enteredPassword === "") {
-            console.log("Account deletion cancelled");
-            return;
-        }
-
-
-        const confirmDelete = window.confirm("Are you sure you want to delete your account. This action is irreversible!");
+        const confirmDelete = window.confirm("Are you absolutely sure you want to delete your account? This action is irreversible!");
 
         if (confirmDelete) {
             try {
 
-                console.log("userID: " + userId);
-                console.log("token: " + token);
-                console.log("password: " + enteredPassword);
+                if (!userId || !token) {
+                    setError("Authentication error. Please log in again.");
+                    return;
+                }
+
 
                 await axios.delete(`http://localhost:3000/api/user/delete/${userId}`, {
                     headers: {
@@ -93,48 +146,105 @@ export default function UserProfile() {
                     }
                 });
 
-
-                alert("Account deleted succesfully!");
-                logout();
-                navigate('/');
+                alert("Account deleted successfully!");
+                logout(); // Clear auth state
+                navigate('/'); // Redirect to home
 
             } catch (err) {
-                console.error('Error deleting account:', err);
-                setError("Account deletion failed")
-            };
+                console.error('Error deleting account:', err.response || err);
+                if (err.response && err.response.data && err.response.data.message) {
+                    setError(`Account deletion failed: ${err.response.data.message}`);
+                } else if (err.response && err.response.status === 401) {
+                    setError("Account deletion failed: Incorrect password or unauthorized.");
+                }
+                else {
+                    setError("Account deletion failed. Please try again later.");
+                }
+            }
+        } else {
+            console.log("Account deletion cancelled by user confirmation.");
         }
     }
+
+    useEffect(() => {
+        if (user?.createdAt) {
+            const formattedCreatedDate = new Date(user.createdAt).toLocaleDateString("cs-CZ", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+            });
+            setUserCreatedDate(formattedCreatedDate);
+        } else {
+            setUserCreatedDate(undefined);
+        }
+    }, [user?.createdAt]);
+
+    useEffect(() => {
+        if (user?.lastOnline) {
+            const formattedLastOnlineDate = new Date(user.lastOnline).toLocaleDateString("cs-CZ", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+            });
+            setUserLastOnlineDate(formattedLastOnlineDate);
+        } else {
+            setUserLastOnlineDate(undefined);
+        }
+    }, [user?.lastOnline]);
+
     return (
         <div className='UserProfile-Body'>
             <NavBar />
             <div className="UserProfile-MainContainer">
-                {error && <div className="UserProfile-Error" style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
+                {error && <div className="UserProfile-Error" style={{ color: 'red', marginTop: '10px', marginBottom: '10px', padding: '10px', border: '1px solid red', borderRadius: '4px' }}>{error}</div>}
                 <div className="UserProfile-UserContainer">
-                    <div><span className='UserProfile-Username tracking-in-expand'>{username}</span></div>
-                    <div className='UserProfile-UserActionBtns'>
-                        {isAdmin && isOwnProfile && (
-                            <Link to="/admin">
-                                <button className="AdminPanel-Button">Admin Panel</button>
-                            </Link>
-                        )}
-                        {isOwnProfile && (
-                            <>
-                                <button className="UserProfile-LogoutButton" onClick={handleLogout}>
-                                    Logout
-                                </button>
-                                <button className="UserProfile-DeleteButton" onClick={handleDeleteAccount}>
-                                    Delete Account
-                                </button>
-                            </>
-                        )}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", width: "100%" }}>
+                        <div><span className='UserProfile-Username tracking-in-expand'>{user?.username || 'Loading...'}</span></div>
+                        <div className='UserProfile-UserActionBtns'>
+                            {isAdmin && isOwnProfile && (
+                                <Link to="/admin">
+                                    <button className="AdminPanel-Button">Admin Panel</button>
+                                </Link>
+                            )}
+                            {isOwnProfile && (
+                                <>
+                                    <button className="UserProfile-LogoutButton" onClick={handleLogout}>
+                                        Logout
+                                    </button>
+                                    <button className="UserProfile-DeleteButton" onClick={handleDeleteAccount}>
+                                        Delete Account
+                                    </button>
+                                </>
+                            )}
+                        </div>
                     </div>
+                    <div className='UserProfile-UserStats'>
+                        <div>
+                            <p>{completedGames.length}</p>
+                            <span>Games Completed</span>
+                        </div>
+                        <div>
+                            <p>{userCreatedDate || 'N/A'}</p>
+                            <span>Account Created</span>
+                        </div>
+                        <div>
+                            <p>{userLastOnlineDate || 'N/A'}</p>
+                            <span>Last Online</span>
+                        </div>
+                        <div>
+                            <p>{favoriteGenre}</p>
+                            <span>Favorite Genre</span>
+                        </div>
+
+                    </div>
+
                 </div>
                 <div className="UserProfile-CompletedGames">
                     <h2>Completed Games</h2>
-                    <div className="UserProfile-GameCardsContainer" style={{marginBottom: "70px"}}>
+                    <div className="UserProfile-GameCardsContainer" style={{ marginBottom: "70px" }}>
                         {completedGames.length > 0 ? (
                             completedGames.map(game => (
-                                <Link to={`/game/${game.id}`} key={game.id}>
+                                <Link to={`/game/${game.id}`} key={game.id} style={{ textDecoration: 'none' }}>
                                     <GameCard game={game} />
                                 </Link>
                             ))

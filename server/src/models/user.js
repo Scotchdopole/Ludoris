@@ -19,6 +19,12 @@ module.exports = (sequelize, DataTypes) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+
+        lastOnline: {
+            type: DataTypes.DATE,
+            unique: false,
+            allowNull: true
         }
 
     });
@@ -28,6 +34,11 @@ module.exports = (sequelize, DataTypes) => {
         const hashedPassword = await bcrypt.hash(user.password, 10);
         user.password = hashedPassword;
     });
+
+    User.beforeCreate(async (user) =>{
+        const currentDate = Date.now;
+        user.lastOnline = currentDate;
+    })
 
     return User;
 };

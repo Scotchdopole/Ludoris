@@ -26,7 +26,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    backdrop-filter: blur(100px);
     align-items: center;
     user-select: none;
     width: 100%;
@@ -35,12 +34,7 @@
 }
 
 
-.Home-Hero:has(.Home-HeroText:hover) {
-    width: 90%;
-    height: 80%;
-    border-radius: 40px;
-    margin-top: 0px;
-}
+
 
 
 .Home-HeroText {
