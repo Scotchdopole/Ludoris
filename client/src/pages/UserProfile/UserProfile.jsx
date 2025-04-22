@@ -19,8 +19,6 @@ export default function UserProfile() {
     const [error, setError] = useState("");
     const [userCreatedDate, setUserCreatedDate] = useState();
     const [userLastOnlineDate, setUserLastOnlineDate] = useState();
-    const [favoriteGenre, setFavoriteGenre] = useState('N/A');
-    const [detailedGames, setDetailedGames] = useState([]);
 
     const token = localStorage.getItem('token');
 
@@ -50,6 +48,7 @@ export default function UserProfile() {
             } catch (err) {
                 console.error('Cannot get user data:', err);
                 setError(`Failed to load user data: ${err.message}`);
+                navigate("/404");
             }
         };
         if (profileId) {
@@ -57,61 +56,8 @@ export default function UserProfile() {
         }
     }, [profileId, navigate]);
 
-    // Po načtení completedGames stáhni detaily všech her
-    useEffect(() => {
-        const fetchGameDetails = async () => {
-            if (!completedGames || completedGames.length === 0) {
-                setDetailedGames([]);
-                return;
-            }
-            try {
-                const details = await Promise.all(
-                    completedGames.map(async (game) => {
-                        const response = await axios.get(`http://localhost:3000/api/game/${game.id}`);
-                        return response.data;
-                    })
-                );
-                setDetailedGames(details);
-            } catch (err) {
-                console.error('Chyba při načítání detailů her:', err);
-                setDetailedGames([]);
-            }
-        };
 
-        fetchGameDetails();
-    }, [completedGames]); // Závislost na completedGames
-
-
-    // Effect to calculate favorite genre
-    useEffect(() => {
-        if (detailedGames.length > 0) {
-            const genreCounts = {};
-            detailedGames.forEach(game => {
-                // game.genres je pole objektů, každý má .name
-                if (Array.isArray(game.genres)) {
-                    game.genres.forEach(genreObj => {
-                        if (genreObj && genreObj.name) {
-                            const genreName = genreObj.name;
-                            genreCounts[genreName] = (genreCounts[genreName] || 0) + 1;
-                        }
-                    });
-                }
-            });
-
-            let mostFrequentGenre = 'N/A';
-            let maxCount = 0;
-            for (const genre in genreCounts) {
-                if (genreCounts[genre] > maxCount) {
-                    maxCount = genreCounts[genre];
-                    mostFrequentGenre = genre;
-                }
-            }
-            setFavoriteGenre(mostFrequentGenre);
-        } else {
-            setFavoriteGenre('N/A');
-        }
-    }, [detailedGames]);
-
+  
     const handleLogout = () => {
         logout();
         navigate('/');
@@ -230,10 +176,6 @@ export default function UserProfile() {
                         <div>
                             <p>{userLastOnlineDate || 'N/A'}</p>
                             <span>Last Online</span>
-                        </div>
-                        <div>
-                            <p>{favoriteGenre}</p>
-                            <span>Favorite Genre</span>
                         </div>
 
                     </div>

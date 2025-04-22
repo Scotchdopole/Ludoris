@@ -282,6 +282,9 @@ lite-youtube {
         height: auto;
     }
 
+    .GamePage-GameTitle{
+        width: fit-content;
+    }
 
     .GamePage-CoverImage {
         margin-top: 20px;

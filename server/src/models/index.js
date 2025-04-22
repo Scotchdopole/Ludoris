@@ -1,14 +1,15 @@
+require("dotenv").config();
 const dbConfig = require("../config/db.js");
 
 const { Sequelize, DataTypes } = require("sequelize");
 
 const sequelize = new Sequelize(
-    dbConfig.DB,
+    dbConfig.DB_NAME,
     dbConfig.USER,
     dbConfig.PASSWORD,
     {
         host: dbConfig.HOST,
-        dialect: dbConfig.DIALECT
+        dialect: process.env.DB_DIALECT
     }
 )
 

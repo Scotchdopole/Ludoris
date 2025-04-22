@@ -21,7 +21,6 @@ export default function Home() {
     <div className='Home-body'>
     <NavBar></NavBar>
     
-
     <div className="Home-Hero">
       <span className="Home-HeroText text-pop-up-top">
         LUDORIS
@@ -30,8 +29,7 @@ export default function Home() {
         Every game. Every detail. Instantly.
       </span>
       </div>
-    
-    </div>
+      </div>
     </>
   )
 }

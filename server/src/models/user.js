@@ -35,10 +35,5 @@ module.exports = (sequelize, DataTypes) => {
         user.password = hashedPassword;
     });
 
-    User.beforeCreate(async (user) =>{
-        const currentDate = Date.now;
-        user.lastOnline = currentDate;
-    })
-
     return User;
 };

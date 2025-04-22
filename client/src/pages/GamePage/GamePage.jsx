@@ -140,10 +140,10 @@ const GamePage = () => {
             <NavBar></NavBar>
             <div className="GamePage-MainContainer">
                 <div className='GamePage-TitleContainer'>
-                    <div style={{width: "40%"}}>
+                    <div className='GamePage-GameTitle'>
                         <span className='GamePage-Title tracking-in-expand'>{game.name}</span>
                     </div>
-                    <div style={{width: "25%"}} className="GamePage-Message-Container">
+                    <div className="GamePage-Message-Container">
                         {showMessage && (
                             error ? (
                                 <div className="GamePage-Error-Message">{error}</div>
@@ -154,7 +154,7 @@ const GamePage = () => {
                             )
                         )}
                     </div>
-                    <div style={{width: "35%"}} className='GamePage-CheckBoxContainer'>
+                    <div className='GamePage-CheckBoxContainer'>
                         <label htmlFor="">{isCompleted ? "Completed" : "Mark as Completed"}</label>
                         <label className='GamePage-Switch'>
                             <input type="checkbox" checked={isCompleted} onChange={handleSwitchChange} />
