@@ -97,7 +97,7 @@ export default function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required placeholder='Password' />
-                    <span>Don't have an account? <Link to={"/register"}>Register</Link></span>
+                    <span style={{marginTop: "23px"}}>Don't have an account? <Link to={"/register"}>Register</Link></span>
                 </form>
                 <button
                     className='LoginPage-SubmitButton'

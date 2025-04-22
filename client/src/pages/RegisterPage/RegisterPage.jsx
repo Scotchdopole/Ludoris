@@ -184,7 +184,7 @@ export default function RegisterPage() {
                         required
                         placeholder='Repeat Password'
                     />
-                    <span>Already have an account? <Link to={"/login"}>Login</Link></span>
+                    <span style={{marginTop:"23px"}}>Already have an account? <Link to={"/login"}>Login</Link></span>
                 </form>
                 <button
                     className='RegisterPage-SubmitButton'
