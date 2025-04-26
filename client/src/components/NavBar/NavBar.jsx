@@ -96,9 +96,6 @@ export default function NavBar() {
             <Link to="/games">
               <button className={`NavBar-Button`}>EXPLORE</button>
             </Link>
-            <Link to="/about">
-              <button className={`NavBar-Button`}>ABOUT</button>
-            </Link>
             <Link to="/">
               <button className={`NavBar-Button`}>HOME</button>
             </Link>

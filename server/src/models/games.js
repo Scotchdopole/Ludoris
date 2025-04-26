@@ -1,5 +1,3 @@
-
-
 module.exports = (sequelize, DataTypes) => {
 
     const Game = sequelize.define("game", {
@@ -38,8 +36,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allowNull: true
         }
-
     })
-
     return Game
 }
