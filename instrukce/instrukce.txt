@@ -1,0 +1,13 @@
+1. Spustit XAMPP – zapnout Apache a MySQL.
+2. V phpMyAdmin vytvořit novou databázi s názvem ludoris (pouze vytvořit prázdnou databázi).
+3. spustit server pomocí "npm i", "npm start" v ./server
+4. Importovat databázi – v phpMyAdmin otevřít databázi ludoris a importovat ludoris.sql soubor.
+5. spustit client pomocí "npm i", "npm run dev" v ./client
+
+adresa: http://localhost:5173/
+
+admin login na stránce:
+username: admin
+password: adminpassword
+
+sql soubor se nachází v repu ./instrukce
